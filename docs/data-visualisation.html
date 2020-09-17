@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Data visualisation | A Minimal Cookbook for your Basic Statistics Needs in R</title>
+  <meta name="description" content="Chapter 8 Data visualisation | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Data visualisation | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Data visualisation | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  
+  
+  
+
+<meta name="author" content="Bernard Liew" />
+
+
+<meta name="date" content="2020-09-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="general-statistics.html"/>
+<link rel="next" href="sampling.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-cheatsheets"><i class="fa fa-check"></i><b>1.3.1</b> R Cheatsheets</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#getting-r-help-and-inspiration-online"><i class="fa fa-check"></i><b>1.3.2</b> Getting R help and inspiration online</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#other-r-books"><i class="fa fa-check"></i><b>1.3.3</b> Other R books</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="started.html"><a href="started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1" data-path="started.html"><a href="started.html#installing-base-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="started.html"><a href="started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="started.html"><a href="started.html#the-four-rstudio-windows"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="started.html"><a href="started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="started.html"><a href="started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
+<li class="chapter" data-level="2.2.3" data-path="started.html"><a href="started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
+<li class="chapter" data-level="2.2.4" data-path="started.html"><a href="started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="started.html"><a href="started.html#reading-and-writing-code"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="started.html"><a href="started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.3.2" data-path="started.html"><a href="started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
+<li class="chapter" data-level="2.3.3" data-path="started.html"><a href="started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="started.html"><a href="started.html#debugging"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="started.html"><a href="started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="started.html"><a href="started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="started.html"><a href="started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i><b>3.1</b> Download and load libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#the-command-line-console"><i class="fa fa-check"></i><b>3.2</b> The command-line (Console)</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.3</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.3.1</b> Send code from a source to the console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#writing-r-scripts-using-notebooks"><i class="fa fa-check"></i><b>3.4</b> Writing R scripts using notebooks</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.5</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.5.1</b> Commenting code with the # (pound) sign</a></li>
+<li class="chapter" data-level="3.5.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.5.2</b> Spacing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.6</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="basics.html"><a href="basics.html#numbers-versus-characters"><i class="fa fa-check"></i><b>3.6.1</b> Numbers versus characters</a></li>
+<li class="chapter" data-level="3.6.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.6.2</b> Creating new objects with &lt;-</a></li>
+<li class="chapter" data-level="3.6.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.6.3</b> How to name objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#getting-and-setting-the-working-directory"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#creating-a-new-rstudio-project"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#viewing-your-command-history"><i class="fa fa-check"></i><b>4.3</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-packages"><i class="fa fa-check"></i><b>4.4</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.4.1</b> Installing a new package</a></li>
+<li class="chapter" data-level="4.4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.4.2</b> Loading a package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="input-and-output.html"><a href="input-and-output.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="5.1" data-path="input-and-output.html"><a href="input-and-output.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="5.2" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.txt-data"><i class="fa fa-check"></i><b>5.2</b> Reading in “.txt” data</a></li>
+<li class="chapter" data-level="5.3" data-path="input-and-output.html"><a href="input-and-output.html#writing-to-.txt-data"><i class="fa fa-check"></i><b>5.3</b> writing to “.txt” data</a></li>
+<li class="chapter" data-level="5.4" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.xlsx-excel-data"><i class="fa fa-check"></i><b>5.4</b> Reading in “.xlsx” Excel data</a></li>
+<li class="chapter" data-level="5.5" data-path="input-and-output.html"><a href="input-and-output.html#writing-a-data-frame-to-excel"><i class="fa fa-check"></i><b>5.5</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="5.6" data-path="input-and-output.html"><a href="input-and-output.html#saving-and-loading-into-.rdata-files"><i class="fa fa-check"></i><b>5.6</b> Saving and loading into .RData files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="input-and-output.html"><a href="input-and-output.html#saving-a-few-items-in-workspace"><i class="fa fa-check"></i><b>5.6.1</b> Saving a few items in workspace</a></li>
+<li class="chapter" data-level="5.6.2" data-path="input-and-output.html"><a href="input-and-output.html#saving-entire-workspace"><i class="fa fa-check"></i><b>5.6.2</b> Saving entire workspace</a></li>
+<li class="chapter" data-level="5.6.3" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-the-saved-workspace"><i class="fa fa-check"></i><b>5.6.3</b> Reading in the saved workspace</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="input-and-output.html"><a href="input-and-output.html#clearing-the-workspace"><i class="fa fa-check"></i><b>5.7</b> Clearing the workspace</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>I Data manipulation via tidyverse</b></span></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#data-overview"><i class="fa fa-check"></i>Data overview</a></li>
+<li class="chapter" data-level="6.1" data-path="data-manipulation.html"><a href="data-manipulation.html#peeking-at-the-data"><i class="fa fa-check"></i><b>6.1</b> Peeking at the Data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manipulation.html"><a href="data-manipulation.html#checking-the-number-of-rows-and-columns-we-have-in-our-strength-data"><i class="fa fa-check"></i><b>6.2</b> Checking the number of rows and columns we have in our strength data</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manipulation.html"><a href="data-manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.3</b> Tidy data</a></li>
+<li class="chapter" data-level="6.4" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.4</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#gathering"><i class="fa fa-check"></i>Gathering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-manipulation.html"><a href="data-manipulation.html#renaming-variables-and-values"><i class="fa fa-check"></i><b>6.5</b> Renaming variables and values</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variable-names"><i class="fa fa-check"></i>Rename variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-values-in-variable-names"><i class="fa fa-check"></i>Rename values in variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#creating-factors"><i class="fa fa-check"></i>Creating factors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-manipulation.html"><a href="data-manipulation.html#making-a-new-variable"><i class="fa fa-check"></i><b>6.6</b> Making a new variable</a></li>
+<li class="chapter" data-level="6.7" data-path="data-manipulation.html"><a href="data-manipulation.html#transforming-a-variable"><i class="fa fa-check"></i><b>6.7</b> Transforming a variable</a></li>
+<li class="chapter" data-level="6.8" data-path="data-manipulation.html"><a href="data-manipulation.html#filtering"><i class="fa fa-check"></i><b>6.8</b> Filtering</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-based-on-category-you-wish-to-keep"><i class="fa fa-check"></i><b>6.8.1</b> Keep rows based on category you wish to keep</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#include-rows-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.2</b> Include rows based on a numerical range</a></li>
+<li class="chapter" data-level="6.8.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exclude-rows-variables-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.3</b> Exclude rows variables based on a numerical range</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-manipulation.html"><a href="data-manipulation.html#selecting"><i class="fa fa-check"></i><b>6.9</b> Selecting</a></li>
+<li class="chapter" data-level="6.10" data-path="data-manipulation.html"><a href="data-manipulation.html#check-for-missing-na-values"><i class="fa fa-check"></i><b>6.10</b> Check for missing NA values</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="data-manipulation.html"><a href="data-manipulation.html#check-if-there-is-any-missing"><i class="fa fa-check"></i><b>6.10.1</b> Check if there is any missing</a></li>
+<li class="chapter" data-level="6.10.2" data-path="data-manipulation.html"><a href="data-manipulation.html#find-the-number-of-missing-values-per-column"><i class="fa fa-check"></i><b>6.10.2</b> Find the number of missing values per column</a></li>
+<li class="chapter" data-level="6.10.3" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-any-columns"><i class="fa fa-check"></i><b>6.10.3</b> Keep rows with 100% no NA across any columns</a></li>
+<li class="chapter" data-level="6.10.4" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-the-columns-you-want"><i class="fa fa-check"></i><b>6.10.4</b> Keep rows with 100% no NA across the columns you want</a></li>
+<li class="chapter" data-level="6.10.5" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-na-across-columns-you-want."><i class="fa fa-check"></i><b>6.10.5</b> Keep rows <strong>with</strong> NA across columns you want.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>7</b> General statistics</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="7.1" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data"><i class="fa fa-check"></i><b>7.1</b> Summarizing your data</a></li>
+<li class="chapter" data-level="7.2" data-path="general-statistics.html"><a href="general-statistics.html#finding-the-correlation-between-variables"><i class="fa fa-check"></i><b>7.2</b> Finding the correlation between variables</a></li>
+<li class="chapter" data-level="7.3" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data-at-a-group-level"><i class="fa fa-check"></i><b>7.3</b> Summarizing your data at a group level</a></li>
+<li class="chapter" data-level="7.4" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test"><i class="fa fa-check"></i><b>7.4</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="7.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>7.5</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="7.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples-nonparametrically"><i class="fa fa-check"></i><b>7.6</b> Comparing the means of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#the-illustrations"><i class="fa fa-check"></i>The Illustrations</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#notes-on-ggplot2-basics"><i class="fa fa-check"></i>Notes on ggplot2 basics</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#long-versus-wide-data-with-ggplot"><i class="fa fa-check"></i>“Long” Versus “Wide” Data with ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#cleaveland-dotplots"><i class="fa fa-check"></i><b>8.2</b> Cleaveland dotplots</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-a-title-and-labels"><i class="fa fa-check"></i><b>8.3</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-grid"><i class="fa fa-check"></i><b>8.4</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#applying-a-theme-to-a-ggplot-figure"><i class="fa fa-check"></i><b>8.5</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot-of-multiple-groups"><i class="fa fa-check"></i><b>8.6</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-legend"><i class="fa fa-check"></i><b>8.7</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-one-scatter-plot-for-each-group"><i class="fa fa-check"></i><b>8.8</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-bar-chart"><i class="fa fa-check"></i><b>8.9</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-standard-deviation-error-bars-to-a-bar-chart"><i class="fa fa-check"></i><b>8.10</b> Adding standard deviation error bars to a Bar Chart</a></li>
+<li class="chapter" data-level="8.11" data-path="data-visualisation.html"><a href="data-visualisation.html#custom-coloring-a-bar-chart"><i class="fa fa-check"></i><b>8.11</b> Custom coloring a Bar Chart</a></li>
+<li class="chapter" data-level="8.12" data-path="data-visualisation.html"><a href="data-visualisation.html#histogram"><i class="fa fa-check"></i><b>8.12</b> Histogram</a></li>
+<li class="chapter" data-level="8.13" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-boxplot"><i class="fa fa-check"></i><b>8.13</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="8.14" data-path="data-visualisation.html"><a href="data-visualisation.html#recipe-id188"><i class="fa fa-check"></i><b>8.14</b> Writing Your Plot to a File</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Inference via infer</b></span></li>
+<li class="chapter" data-level="9" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>9</b> Sampling</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="9.1" data-path="sampling.html"><a href="sampling.html#sampling-activity"><i class="fa fa-check"></i><b>9.1</b> Sampling bowl activity</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="sampling.html"><a href="sampling.html#what-proportion-of-this-bowls-balls-are-red"><i class="fa fa-check"></i><b>9.1.1</b> What proportion of this bowl’s balls are red?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="sampling.html"><a href="sampling.html#using-the-shovel-once"><i class="fa fa-check"></i><b>9.1.2</b> Using the shovel once</a></li>
+<li class="chapter" data-level="9.1.3" data-path="sampling.html"><a href="sampling.html#student-shovels"><i class="fa fa-check"></i><b>9.1.3</b> Using the shovel 33 times</a></li>
+<li class="chapter" data-level="9.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>9.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="sampling.html"><a href="sampling.html#sampling-simulation"><i class="fa fa-check"></i><b>9.2</b> Virtual sampling</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-once"><i class="fa fa-check"></i><b>9.2.1</b> Using the virtual shovel once</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-33-times"><i class="fa fa-check"></i><b>9.2.2</b> Using the virtual shovel 33 times</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sampling.html"><a href="sampling.html#shovel-1000-times"><i class="fa fa-check"></i><b>9.2.3</b> Using the virtual shovel 1000 times</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sampling.html"><a href="sampling.html#different-shovels"><i class="fa fa-check"></i><b>9.2.4</b> Using different shovels</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="sampling.html"><a href="sampling.html#sampling-framework"><i class="fa fa-check"></i><b>9.3</b> Sampling framework</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sampling.html"><a href="sampling.html#terminology-and-notation"><i class="fa fa-check"></i><b>9.3.1</b> Terminology &amp; notation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sampling.html"><a href="sampling.html#sampling-definitions"><i class="fa fa-check"></i><b>9.3.2</b> Statistical definitions</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sampling.html"><a href="sampling.html#moral-of-the-story"><i class="fa fa-check"></i><b>9.3.3</b> The moral of the story</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="sampling.html"><a href="sampling.html#sampling-case-study"><i class="fa fa-check"></i><b>9.4</b> Case study: Polls</a></li>
+<li class="chapter" data-level="9.5" data-path="sampling.html"><a href="sampling.html#sampling-conclusion"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="sampling.html"><a href="sampling.html#sampling-conclusion-table"><i class="fa fa-check"></i><b>9.5.1</b> Sampling scenarios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>10</b> Bootstrapping &amp; Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="10.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-tactile"><i class="fa fa-check"></i><b>10.1</b> Pennies activity</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-is-the-average-year-on-us-pennies-in-2019"><i class="fa fa-check"></i><b>10.1.1</b> What is the average year on US pennies in 2019?</a></li>
+<li class="chapter" data-level="10.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-once"><i class="fa fa-check"></i><b>10.1.2</b> Resampling once</a></li>
+<li class="chapter" data-level="10.1.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#student-resamples"><i class="fa fa-check"></i><b>10.1.3</b> Resampling 35 times</a></li>
+<li class="chapter" data-level="10.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>10.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-simulation"><i class="fa fa-check"></i><b>10.2</b> Computer simulation of resampling</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#virtually-resampling-once"><i class="fa fa-check"></i><b>10.2.1</b> Virtually resampling once</a></li>
+<li class="chapter" data-level="10.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-35-replicates"><i class="fa fa-check"></i><b>10.2.2</b> Virtually resampling 35 times</a></li>
+<li class="chapter" data-level="10.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-1000-replicates"><i class="fa fa-check"></i><b>10.2.3</b> Virtually resampling 1000 times</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-build-up"><i class="fa fa-check"></i><b>10.3</b> Understanding confidence intervals</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method"><i class="fa fa-check"></i><b>10.3.1</b> Percentile method</a></li>
+<li class="chapter" data-level="10.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#se-method"><i class="fa fa-check"></i><b>10.3.2</b> Standard error method</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-process"><i class="fa fa-check"></i><b>10.4</b> Constructing confidence intervals</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#original-workflow"><i class="fa fa-check"></i><b>10.4.1</b> Original workflow</a></li>
+<li class="chapter" data-level="10.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-workflow"><i class="fa fa-check"></i><b>10.4.2</b> infer package workflow</a></li>
+<li class="chapter" data-level="10.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method-infer"><i class="fa fa-check"></i><b>10.4.3</b> Percentile method with infer</a></li>
+<li class="chapter" data-level="10.4.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-se"><i class="fa fa-check"></i><b>10.4.4</b> Standard error method with infer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-prop-ci"><i class="fa fa-check"></i><b>10.5</b> Interpreting confidence intervals</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ilyas-yohan"><i class="fa fa-check"></i><b>10.5.1</b> Did the net capture the fish?</a></li>
+<li class="chapter" data-level="10.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#shorthand"><i class="fa fa-check"></i><b>10.5.2</b> Precise &amp; shorthand interpretation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-width"><i class="fa fa-check"></i><b>10.5.3</b> Width of confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-conclusion"><i class="fa fa-check"></i><b>10.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-vs-sampling"><i class="fa fa-check"></i><b>10.6.1</b> Comparing bootstrap and sampling distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>11</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="11.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-activity"><i class="fa fa-check"></i><b>11.1</b> Promotions activity</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#does-gender-affect-promotions-at-bank"><i class="fa fa-check"></i><b>11.1.1</b> Does gender affect promotions at bank?</a></li>
+<li class="chapter" data-level="11.1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-once"><i class="fa fa-check"></i><b>11.1.2</b> Shuffling once</a></li>
+<li class="chapter" data-level="11.1.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-16-times"><i class="fa fa-check"></i><b>11.1.3</b> Shuffling 16 times</a></li>
+<li class="chapter" data-level="11.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>11.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#understanding-ht"><i class="fa fa-check"></i><b>11.2</b> Understanding hypothesis tests</a></li>
+<li class="chapter" data-level="11.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-infer"><i class="fa fa-check"></i><b>11.3</b> Conducting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#infer-workflow-ht"><i class="fa fa-check"></i><b>11.3.1</b> infer package workflow</a></li>
+<li class="chapter" data-level="11.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#comparing-infer-workflows"><i class="fa fa-check"></i><b>11.3.2</b> Comparison with confidence intervals</a></li>
+<li class="chapter" data-level="11.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#only-one-test"><i class="fa fa-check"></i><b>11.3.3</b> “There is only one test”</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-interpretation"><i class="fa fa-check"></i><b>11.4</b> Interpreting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#trial"><i class="fa fa-check"></i><b>11.4.1</b> Two possible outcomes</a></li>
+<li class="chapter" data-level="11.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#types-of-errors"><i class="fa fa-check"></i><b>11.4.2</b> Types of errors</a></li>
+<li class="chapter" data-level="11.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#choosing-alpha"><i class="fa fa-check"></i><b>11.4.3</b> How do we choose alpha?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-case-study"><i class="fa fa-check"></i><b>11.5</b> Case study: Are action or romance movies rated higher?</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#imdb-data"><i class="fa fa-check"></i><b>11.5.1</b> IMDb ratings data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sampling-scenario"><i class="fa fa-check"></i><b>11.5.2</b> Sampling scenario</a></li>
+<li class="chapter" data-level="11.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conducting-the-hypothesis-test"><i class="fa fa-check"></i><b>11.5.3</b> Conducting the hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conclusion"><i class="fa fa-check"></i><b>11.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#theory-hypo"><i class="fa fa-check"></i><b>11.6.1</b> Theory-based hypothesis tests</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Worked example</b></span></li>
+<li class="chapter" data-level="12" data-path="is-ankle-strength-different-between-two-groups-at-baseline.html"><a href="is-ankle-strength-different-between-two-groups-at-baseline.html"><i class="fa fa-check"></i><b>12</b> Is ankle strength different between two groups at baseline</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="12.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>12.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="12.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="is-knee-strength-change-over-time-between-two-groups-different.html"><a href="is-knee-strength-change-over-time-between-two-groups-different.html"><i class="fa fa-check"></i><b>13</b> Is knee strength change over time between two groups different</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="13.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>13.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="13.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>13.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualisation" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Data visualisation</h1>
+<div id="download-and-load-libraries" class="section level2 unnumbered">
+<h2>Download and load libraries</h2>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb178-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb178-3" title="3">               readr, <span class="co"># importing and writing data</span></a>
+<a class="sourceLine" id="cb178-4" title="4">               openxlsx, <span class="co"># writing excel documents</span></a>
+<a class="sourceLine" id="cb178-5" title="5">               purrr, <span class="co"># for piping %&gt;%</span></a>
+<a class="sourceLine" id="cb178-6" title="6">               corrplot, <span class="co"># for correlation</span></a>
+<a class="sourceLine" id="cb178-7" title="7">               knitr,</a>
+<a class="sourceLine" id="cb178-8" title="8">               mosaic,</a>
+<a class="sourceLine" id="cb178-9" title="9">               yarrr,</a>
+<a class="sourceLine" id="cb178-10" title="10">               ez)</a></code></pre></div>
+</div>
+<div id="import-data" class="section level2 unnumbered">
+<h2>Import data</h2>
+<p>Let’s load the 3 files from <code>data</code> folder into the workspace again.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1">subjdat &lt;-<span class="st">  </span><span class="kw">read_delim</span> (<span class="dt">file =</span> <span class="st">&quot;data/SubjectData.txt&quot;</span>, <span class="co"># file name</span></a>
+<a class="sourceLine" id="cb179-2" title="2">                        <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="co"># file separater</span></a>
+<a class="sourceLine" id="cb179-3" title="3">                        <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="co"># the first row of the data is a header row</span></a>
+<a class="sourceLine" id="cb179-4" title="4"></a>
+<a class="sourceLine" id="cb179-5" title="5">scalfac &lt;-<span class="st">  </span><span class="kw">read_delim</span> (<span class="dt">file =</span> <span class="st">&quot;data/ScaleFact.txt&quot;</span>, <span class="co"># file name</span></a>
+<a class="sourceLine" id="cb179-6" title="6">                        <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="co"># file separater</span></a>
+<a class="sourceLine" id="cb179-7" title="7">                        <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="co"># the first row of the data is a header row</span></a>
+<a class="sourceLine" id="cb179-8" title="8"></a>
+<a class="sourceLine" id="cb179-9" title="9">strn &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/STRENGTH.xlsx&quot;</span>)</a></code></pre></div>
+</div>
+<div id="rename-column-names" class="section level2 unnumbered">
+<h2>Rename column names</h2>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="co"># Method 1:</span></a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="kw">colnames</span> (strn) &lt;-<span class="st">  </span><span class="kw">tolower</span>(<span class="kw">colnames</span> (strn)) <span class="co"># captials to lower caps</span></a>
+<a class="sourceLine" id="cb180-3" title="3"></a>
+<a class="sourceLine" id="cb180-4" title="4"><span class="co"># Method 2: Define new names</span></a>
+<a class="sourceLine" id="cb180-5" title="5">newnames &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;atorq&quot;</span>, <span class="st">&quot;awork&quot;</span>, <span class="st">&quot;apow&quot;</span>, <span class="st">&quot;ktorq&quot;</span>, <span class="st">&quot;kwork&quot;</span>, <span class="st">&quot;kpow&quot;</span>)</a>
+<a class="sourceLine" id="cb180-6" title="6"><span class="co"># [7:12] tells the system the column numbers you want to replace. In this instance it is columns 7 to 12</span></a>
+<a class="sourceLine" id="cb180-7" title="7"><span class="kw">colnames</span> (strn)[<span class="dv">7</span><span class="op">:</span><span class="dv">12</span>] =<span class="st"> </span>newnames</a></code></pre></div>
+</div>
+<div id="intro-Graphics" class="section level2 unnumbered">
+<h2>Introduction</h2>
+<p>Graphics is a great strength of R. The <code>graphics</code> package is part of the
+standard distribution and contains many useful functions for creating a
+variety of graphic displays. The base functionality has been expanded and made easier with <code>ggplot2</code>, part of the tidyverse of packages. In this chapter we will focus on examples using <code>ggplot2</code>.</p>
+<p>Graphics is a vast subject, and we can only scratch the surface here.
+Winston Chang’s <a href="http://shop.oreilly.com/product/0636920063704.do"><em>R Graphics Cookbook, 2nd Edition</em></a>, is part of the O’Reilly Cookbook series
+and walks through many useful recipes with a focus on <code>ggplot2</code>.
+If you want to delve deeper, we recommend <em>R Graphics</em> by Paul Murrell
+(Chapman &amp; Hall, 2006). <em>R Graphics</em> discusses the paradigms behind R
+graphics, explains how to use the graphics functions, and contains
+numerous examples—including the code to re-create them. Some of the
+examples are pretty amazing.</p>
+<div id="the-illustrations" class="section level3 unnumbered">
+<h3>The Illustrations</h3>
+<p>The graphs in this chapter are mostly plain and unadorned. We did that
+intentionally. When you call the <code>ggplot</code> function, as in:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb181-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="figure"><span id="fig:simpleplot"></span>
+<img src="07-visualization_files/figure-html/simpleplot-1.png" alt="Simple plot" width="672" />
+<p class="caption">
+Figure 8.1: Simple plot
+</p>
+</div>
+<p>you get a plain, graphical representation of <em>x</em> and <em>y</em> as shown in Figure <a href="data-visualisation.html#fig:simpleplot">8.1</a>.
+You could adorn the graph with colors, a title, labels, a legend, text, and so forth, but
+then the call to <code>ggplot</code> becomes more and more crowded, obscuring the
+basic intention.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb182-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb182-3" title="3"><span class="st">  </span><span class="kw">labs</span>(</a>
+<a class="sourceLine" id="cb182-4" title="4">    <span class="dt">title =</span> <span class="st">&quot;Simple Plot Example&quot;</span>,</a>
+<a class="sourceLine" id="cb182-5" title="5">    <span class="dt">subtitle =</span> <span class="st">&quot;with a subtitle&quot;</span>,</a>
+<a class="sourceLine" id="cb182-6" title="6">    <span class="dt">x =</span> <span class="st">&quot;x-values&quot;</span>,</a>
+<a class="sourceLine" id="cb182-7" title="7">    <span class="dt">y =</span> <span class="st">&quot;y-values&quot;</span></a>
+<a class="sourceLine" id="cb182-8" title="8">  ) <span class="op">+</span></a>
+<a class="sourceLine" id="cb182-9" title="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;grey50&quot;</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:complicatedplot"></span>
+<img src="07-visualization_files/figure-html/complicatedplot-1.png" alt="Slightly more complicated plot" width="672" />
+<p class="caption">
+Figure 8.2: Slightly more complicated plot
+</p>
+</div>
+<p>The resulting plot is shown in Figure <a href="data-visualisation.html#fig:complicatedplot">8.2</a>. We want to keep the recipes clean, so we emphasize the basic plot and then show later how to add adornments.</p>
+</div>
+<div id="notes-on-ggplot2-basics" class="section level3 unnumbered">
+<h3>Notes on ggplot2 basics</h3>
+<p>While the package is called <code>ggplot2</code>, the primary plotting function in the package is called <code>ggplot</code>. It is important to understand the basic pieces of a <code>ggplot2</code> graph. In the preceding examples, you can see that we pass data into <code>ggplot</code>, then define how the graph is created by stacking together small phrases that describe some aspect of the plot. This stacking together of phrases is part of the “grammar of graphics” ethos (that’s where the <code>gg</code> comes from).
+To learn more, you can read <a href="http://vita.had.co.nz/papers/layered-grammar.pdf">“A Layered Grammar of Graphics”</a> written by <code>ggplot2</code> author Hadley Wickham.
+The “grammar of graphics” concept originated with Leland Wilkinson, who articulated the idea of building graphics up from a set of primitives (i.e., verbs and nouns). With <code>ggplot</code>, the underlying data need not be fundamentally reshaped for each type of graphical representation. In general, the data stays the same and the user then changes syntax slightly to illustrate the data differently. This is significantly more consistent than base graphics, which often require reshaping the data in order to change the way it is visualized.</p>
+<p>As we talk about <code>ggplot</code> graphics, it’s worth defining the components of a <code>ggplot</code> graph:</p>
+<dl>
+<dt><code>geometric object functions</code></dt>
+<dd><p>These are geometric objects that describe the type of graph being created. These start with <code>geom_</code> and examples include <code>geom_line</code>, <code>geom_boxplot</code>, and <code>geom_point,</code> along with dozens more.</p>
+</dd>
+<dt><code>aesthetics</code></dt>
+<dd><p>The aesthetics, or aesthetic mappings, communicate to <code>ggplot</code> which fields in the source data get mapped to which visual elements in the graphic. This is the <code>aes</code> line in a <code>ggplot</code> call.</p>
+</dd>
+<dt><code>stats</code></dt>
+<dd><p>Stats are statistical transformations that are done before displaying the data. Not all graphs will have stats, but a few common stats are <code>stat_ecdf</code> (the empirical cumulative distribution function) and <code>stat_identity</code>, which tells <code>ggplot</code> to pass the data without doing any stats at all.</p>
+</dd>
+<dt><code>facet functions</code></dt>
+<dd><p>Facets are subplots where each small plot represents a subgroup of the data. The faceting functions include <code>facet_wrap</code> and <code>facet_grid</code>.</p>
+</dd>
+<dt><code>themes</code></dt>
+<dd><p>Themes are the visual elements of the plot that are not tied to data. These might include titles, margins, table of contents locations, or font choices.</p>
+</dd>
+<dt><code>layer</code></dt>
+<dd><p>A layer is a combination of data, aesthetics, a geometric object, a stat, and other options to produce a visual layer in the <code>ggplot</code> graphic.</p>
+</dd>
+</dl>
+</div>
+<div id="long-versus-wide-data-with-ggplot" class="section level3 unnumbered">
+<h3>“Long” Versus “Wide” Data with ggplot</h3>
+<p>One of the first sources of confusion for new <code>ggplot</code> users is that they are inclined to reshape their data to be “wide” before plotting it. “Wide” here means every variable they are plotting is its own column in the underlying data frame. This is an approach that many users develop while using Excel and then bring with them to R. <code>ggplot</code> works most easily with “long” data where additional variables are added as rows in the data frame rather than columns. The great side effect of adding more measurements as rows is that any properly constructed <code>ggplot</code> graphs will automatically update to reflect the new data without changing the <code>ggplot</code> code. If each additional variable were added as a column, then the plotting code would have to be changed to introduce additional variables. This idea of “long” versus “wide” data will become more obvious in the examples in the rest of this chapter.</p>
+</div>
+</div>
+<div id="creating-a-scatter-plot" class="section level2">
+<h2><span class="header-section-number">8.1</span> Creating a Scatter Plot</h2>
+<p>We can plot the data by calling <code>ggplot</code>, passing in the data frame, and invoking a geometric point function:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb183-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p>In this example, the data frame is called <code>strn</code> and the <em>x</em> and <em>y</em> data are in fields named <code>ktorq</code> and <code>atorq</code>, which we pass to the aesthetic in the call <code>aes(x, y)</code>.</p>
+<p>A scatter plot is a common first attack on a new dataset. It’s a quick
+way to see the relationship, if any, between <em>x</em> and <em>y</em>.</p>
+<p>Plotting with <code>ggplot</code> requires telling <code>ggplot</code> what data frame to use, then what type of graph to create, and which aesthetic mapping (<code>aes</code>) to use. The <code>aes</code> in this case defines which field from <code>df</code> goes into which axis on the plot. Then the command <code>geom_point</code> communicates that you want a point graph, as opposed to a line or other type of graphic.</p>
+</div>
+<div id="cleaveland-dotplots" class="section level2">
+<h2><span class="header-section-number">8.2</span> Cleaveland dotplots</h2>
+<p>One of the most important types of scatterplot is a cleaveland dotplot. It plots individual data points of a variable for every single row of your data. Useful for outlier detection, different spread of data a covariate.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="co"># Save the figure into an object called f1</span></a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> strn) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb184-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">nrow</span>(strn),<span class="dv">1</span>), <span class="dt">x =</span> atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb184-4" title="4"><span class="st">  </span><span class="kw">ylab</span> (<span class="st">&quot;row number&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Label you like</span></a>
+<a class="sourceLine" id="cb184-5" title="5"><span class="st">  </span><span class="kw">xlab</span> (<span class="st">&quot;ankle torque&quot;</span>) <span class="co"># Label you like</span></a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="07-visualization_files/figure-html/unnamed-chunk-5-1.png" alt="Ankle torque by group and time" width="672" />
+<p class="caption">
+Figure 8.3: Ankle torque by group and time
+</p>
+</div>
+</div>
+<div id="adding-a-title-and-labels" class="section level2">
+<h2><span class="header-section-number">8.3</span> Adding a Title and Labels</h2>
+<p>You want to add a title to your plot or add labels for the axes.</p>
+<p>With <code>ggplot</code> we add a <code>labs</code> element that controls the labels for the title and axes.</p>
+<p>When calling <code>labs</code> in <code>ggplot</code>, specify:</p>
+<dl>
+<dt><code>title</code></dt>
+<dd><p>The desired title text</p>
+</dd>
+<dt><code>x</code></dt>
+<dd><p>x-axis label</p>
+</dd>
+<dt><code>y</code></dt>
+<dd><p>y-axis label</p>
+</dd>
+</dl>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb185-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb185-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;The Title&quot;</span>,</a>
+<a class="sourceLine" id="cb185-4" title="4">       <span class="dt">x =</span> <span class="st">&quot;knee torque&quot;</span>,</a>
+<a class="sourceLine" id="cb185-5" title="5">       <span class="dt">y =</span> <span class="st">&quot;ankle torque&quot;</span>)</a></code></pre></div>
+<p>A title and better labels will make a graph more interesting and easier to interpret.</p>
+</div>
+<div id="adding-or-removing-a-grid" class="section level2">
+<h2><span class="header-section-number">8.4</span> Adding (or Removing) a Grid</h2>
+<p>You want to change the background grid to your graphic.</p>
+<p>With <code>ggplot</code> background grids come as a default, as you have seen in other recipes. However, we can alter the background grid using the <code>theme</code> function or by applying a prepackaged theme to our graph.
+We can use <code>theme</code> to alter the background panel of our graphic:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb186-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb186-3" title="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;grey50&quot;</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:whitebackground"></span>
+<img src="07-visualization_files/figure-html/whitebackground-1.png" alt="White background" width="672" />
+<p class="caption">
+Figure 8.4: White background
+</p>
+</div>
+<p><code>ggplot</code> fills in the background with a grey grid by default. So you may find yourself wanting to remove that grid completely or change it to something else. Let’s create a <code>ggplot</code> graphic and then incrementally change the background style.</p>
+<p>We can add or change aspects of our graphic by creating a <code>ggplot</code> object, then calling the object and using the <code>+</code> to add to it. The background shading in a <code>ggplot</code> graphic is actually three different graph elements:</p>
+<p><code>panel.grid.major</code>:</p>
+<p>These are white by default and heavy.</p>
+<p><code>panel.grid.minor</code>:</p>
+<p>These are white by default and light.</p>
+<p><code>panel.background</code>:</p>
+</div>
+<div id="applying-a-theme-to-a-ggplot-figure" class="section level2">
+<h2><span class="header-section-number">8.5</span> Applying a Theme to a ggplot Figure</h2>
+<p>You want your plot to use a preset collection of colors, styles, and formatting.</p>
+<p><code>ggplot</code> supports <em>themes</em>, which are collections of settings for your figures. To use one of the themes, just add the desired theme function to your <code>ggplot</code> with a <code>+</code>:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb187-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb187-3" title="3"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p>The <code>ggplot2</code> package contains the following themes Figure <a href="data-visualisation.html#fig:ggthemes">8.5</a>:</p>
+<pre><code>theme_bw()
+theme_dark() 
+theme_classic()
+theme_gray()
+theme_linedraw()
+theme_light()
+theme_minimal()
+theme_test()
+theme_void()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:ggthemes"></span>
+<img src="images/visualization-themes.png" alt="Default themes in ggplot." width="50%" />
+<p class="caption">
+Figure 8.5: Default themes in ggplot.
+</p>
+</div>
+</div>
+<div id="creating-a-scatter-plot-of-multiple-groups" class="section level2">
+<h2><span class="header-section-number">8.6</span> Creating a Scatter Plot of Multiple Groups</h2>
+<p>You have data in a data frame with multiple observations per record: <em>x</em>, <em>y</em>, and a
+factor <em>f</em> that indicates the group. You want to create a scatter
+plot of <em>x</em> and <em>y</em> that distinguishes among the groups.</p>
+<p>With <code>ggplot</code> we control the mapping of shapes to the factor <code>group</code> by passing <code>shape = group</code> to the <code>aes</code>.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq, <span class="dt">shape =</span> group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb189-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p>Plotting multiple groups in one scatter plot creates an uninformative
+mess unless we distinguish one group from another. We make this distinction in <code>ggplot</code> by setting the <code>shape</code> parameter of the <code>aes</code> function.</p>
+<p>We can add <code>shape = group</code> and <code>color = group</code> to our <code>aes</code> call, to get each species with a different shape and color, shown in Figure <a href="data-visualisation.html#fig:strnshape">8.6</a>.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq, <span class="dt">shape =</span> group, <span class="dt">color =</span>group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb190-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="figure"><span id="fig:strnshape"></span>
+<img src="07-visualization_files/figure-html/strnshape-1.png" alt="strength: shape and color" width="672" />
+<p class="caption">
+Figure 8.6: strength: shape and color
+</p>
+</div>
+<p><code>ggplot</code> conveniently sets up a legend for you as well, which is handy.</p>
+</div>
+<div id="adding-or-removing-a-legend" class="section level2">
+<h2><span class="header-section-number">8.7</span> Adding (or Removing) a Legend</h2>
+<p>You want your plot to include a <em>legend</em>, the little box that decodes
+the graphic for the viewer.</p>
+<p>In most cases <code>ggplot</code> will add the legends automatically, as you can see in the previous recipe. If you do not have explicit grouping in the <code>aes</code>, then <code>ggplot</code> will not show a legend by default. If we want to force <code>ggplot</code> to show a legend, we can set the shape or line type of our graph to a constant. <code>ggplot</code> will then show a legend with one group. We then use <code>guides</code> to guide <code>ggplot</code> in how to label the legend.</p>
+<p>This can be illustrated with our <code>strn</code> scatter plot:</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq, <span class="dt">color =</span>group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-3" title="3"><span class="st">  </span><span class="kw">guides</span>(<span class="dt">color =</span><span class="kw">guide_legend</span>(<span class="dt">title=</span><span class="st">&quot;My Legend Title&quot;</span>)) </a></code></pre></div>
+<div class="figure"><span id="fig:needslegend"></span>
+<img src="07-visualization_files/figure-html/needslegend-1.png" alt="Legend added" width="672" />
+<p class="caption">
+Figure 8.7: Legend added
+</p>
+</div>
+<p>Figure <a href="data-visualisation.html#fig:needslegend">8.7</a> illustrates the result of setting the shape to a string value and then relabeling the legend using <code>guides</code>.</p>
+<p>More commonly, you may want to turn legends off, which you can do by setting the <code>legend.position = "none"</code> in the <code>theme</code>. We can use the <code>strn</code> plot from the prior recipe and add the <code>theme</code> call as shown in Figure <a href="data-visualisation.html#fig:shapelegend">8.8</a>:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq, <span class="dt">color =</span>group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-3" title="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:shapelegend"></span>
+<img src="07-visualization_files/figure-html/shapelegend-1.png" alt="Legend removed" width="672" />
+<p class="caption">
+Figure 8.8: Legend removed
+</p>
+</div>
+<p>Adding legends to <code>ggplot</code> when there is no grouping is an exercise in “tricking” <code>ggplot</code> into showing the legend by passing a string to a grouping parameter in <code>aes</code>. While this will not change the grouping (as there is only one group), it will result in a legend being shown with a name.</p>
+<p>Then we can use <code>guides</code> to alter the legend title. It’s worth noting that we are not changing anything about the data, just exploiting settings in order to coerce <code>ggplot</code> into showing a legend when it typically would not.</p>
+<p>One of the huge benefits of <code>ggplot</code> is its very good defaults. Getting positions and correspondence between labels and their point types is done automatically, but can be overridden if needed. To remove a legend totally, we set <code>theme</code> parameters with <code>theme(legend.position = "none")</code>. In addition to <code>"none"</code> you can set the <code>legend.position</code> to be <code>"left"</code>, <code>"right"</code>, <code>"bottom"</code>, <code>"top"</code>, or a two-element numeric vector. Use a two-element numeric vector in order to pass <code>ggplot</code> specific coordinates of where you want the legend. If you’re using the coordinate positions, the values passed are between 0 and 1 for the <em>x</em> and <em>y</em> position, respectively.</p>
+<p>Figure <a href="data-visualisation.html#fig:shapelegend-moved">8.9</a> shows an example of a legend positioned at the bottom, created with this adjustment to the <code>legend.position</code>:</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq, <span class="dt">color =</span>group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb193-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb193-3" title="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:shapelegend-moved"></span>
+<img src="07-visualization_files/figure-html/shapelegend-moved-1.png" alt="Legend on the bottom" width="672" />
+<p class="caption">
+Figure 8.9: Legend on the bottom
+</p>
+</div>
+<p>Or we could use the two-element numeric vector to put the legend in a specific location, as in Figure <a href="data-visualisation.html#fig:shapelegend-moved2">8.10</a>. The example puts the center of the legend at 80% to the right and 20% up from the bottom.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq, <span class="dt">color =</span>group)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb194-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb194-3" title="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">8</span>, <span class="fl">.2</span>))</a></code></pre></div>
+<div class="figure"><span id="fig:shapelegend-moved2"></span>
+<img src="07-visualization_files/figure-html/shapelegend-moved2-1.png" alt="Legend at a point" width="672" />
+<p class="caption">
+Figure 8.10: Legend at a point
+</p>
+</div>
+<p>In many aspects beyond legends, <code>ggplot</code> uses sane defaults but offers the flexibility to override them and tweak the details. You can find more details on <code>ggplot</code> options related to legends in the help for <code>theme</code> by typing <code>**?theme**</code> or looking in the <code>ggplot</code> <a href="http://ggplot2.tidyverse.org/reference/theme.html">online reference material</a>.</p>
+</div>
+<div id="creating-one-scatter-plot-for-each-group" class="section level2">
+<h2><span class="header-section-number">8.8</span> Creating One Scatter Plot for Each Group</h2>
+<p>Your dataset contains (at least) two numeric variables and a factor or character field defining a group. You want to create several scatter plots for the numeric variables, with one
+scatter plot for each level of the factor or character field.</p>
+<p>We produce this kind of plot, called a <em>conditioning plot</em>, in <code>ggplot</code> by adding <code>facet_wrap</code> to our plot.
+In this example we use the data frame <code>strn</code>, which contains three columns: <em>x</em>, <em>y</em>, and <em>f</em>, with <em>f</em> being a factor (or a character string).</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">ggplot</span>(strn, <span class="kw">aes</span>(ktorq, atorq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb195-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb195-3" title="3"><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>group)</a></code></pre></div>
+</div>
+<div id="creating-a-bar-chart" class="section level2">
+<h2><span class="header-section-number">8.9</span> Creating a Bar Chart</h2>
+<p>You want to create a bar chart.</p>
+<p>A common situation is to have a column of data that represents a group and then another column that represents a measure about that group. This format is “long” data because the data runs vertically instead of having a column for each group.</p>
+<p>Using the <code>geom_bar</code> function in <code>ggplot</code>, we can plot the heights as bars. If the data is already aggregated, we add <code>stat = "identity"</code> so that <code>ggplot</code> knows it needs to do no aggregation on the groups of values before plotting.</p>
+<p>The first thing to do when trying to generate nice plots is to create a dataframe of the values you want to plot. In this case, since I want to plot the mean group by time values of <code>ktorq</code>, and include one standard deviation error bars, I need to generate these values.</p>
+<p>In <code>ggplot</code> we can use the <code>fill</code> parameter in <code>aes</code> to tell <code>ggplot</code> what field to base the colors on. If we pass a numeric field to <code>ggplot</code>, we will get a continuous gradient of colors; and if we pass a factor or character field to <code>fill</code>, we will get contrasting colors for each group.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="co"># generate a summarized dataframe </span></a>
+<a class="sourceLine" id="cb196-2" title="2">df.plot =<span class="st"> </span>strn <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb196-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(group, time) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb196-4" title="4"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">Mean =</span> <span class="kw">mean</span> (ktorq, <span class="dt">na.rm =</span> T), <span class="co"># change ktorq to other variables you desire</span></a>
+<a class="sourceLine" id="cb196-5" title="5">             <span class="dt">Sd =</span> <span class="kw">sd</span> (ktorq, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb196-6" title="6"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb196-7" title="7"></a>
+<a class="sourceLine" id="cb196-8" title="8"><span class="co"># Combined plot</span></a>
+<a class="sourceLine" id="cb196-9" title="9"><span class="kw">ggplot</span>(<span class="dt">data =</span> df.plot) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb196-10" title="10"><span class="kw">geom_bar</span> (<span class="kw">aes</span>(<span class="dt">y =</span> Mean, <span class="dt">x =</span> group, <span class="dt">fill =</span> time), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">position=</span><span class="kw">position_dodge</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb196-11" title="11"><span class="kw">ylab</span> (<span class="st">&quot;Knee torque&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb196-12" title="12"><span class="kw">xlab</span> (<span class="st">&quot;Group&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:ktorqbar"></span>
+<img src="07-visualization_files/figure-html/ktorqbar-1.png" alt="Knee torque by group" width="672" />
+<p class="caption">
+Figure 8.11: Knee torque by group
+</p>
+</div>
+<p>Figure <a href="data-visualisation.html#fig:ktorqbar">8.11</a> shows the resulting bar chart.</p>
+<p>This example uses <code>stat = "identity"</code>, which assumes that the heights of your bars are conveniently stored as a value in one field with only one record per column.</p>
+</div>
+<div id="adding-standard-deviation-error-bars-to-a-bar-chart" class="section level2">
+<h2><span class="header-section-number">8.10</span> Adding standard deviation error bars to a Bar Chart</h2>
+<p>You want to augment a bar chart with standard deviation.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> df.plot) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb197-2" title="2"><span class="kw">geom_bar</span> (<span class="kw">aes</span>(<span class="dt">y =</span> Mean, <span class="dt">x =</span> group, <span class="dt">fill =</span> time), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">position=</span><span class="kw">position_dodge</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb197-3" title="3"><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>Mean <span class="op">-</span>Sd, <span class="dt">ymax=</span>Mean <span class="op">+</span>Sd, <span class="dt">x =</span> group, <span class="dt">colour =</span> time), </a>
+<a class="sourceLine" id="cb197-4" title="4">              <span class="dt">width=</span>.<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb197-5" title="5">               <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="fl">0.9</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb197-6" title="6"><span class="kw">ylab</span> (<span class="st">&quot;Knee torque&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb197-7" title="7"><span class="kw">xlab</span> (<span class="st">&quot;Group&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:ktorqbarerrors"></span>
+<img src="07-visualization_files/figure-html/ktorqbarerrors-1.png" alt="Knee torque by group with error bars as 1SD" width="672" />
+<p class="caption">
+Figure 8.12: Knee torque by group with error bars as 1SD
+</p>
+</div>
+</div>
+<div id="custom-coloring-a-bar-chart" class="section level2">
+<h2><span class="header-section-number">8.11</span> Custom coloring a Bar Chart</h2>
+<p>You want to manually customize the color or shade the bars of a bar chart.</p>
+<p>We can customize the colour using the <code>scale_fill_manual</code> and/or the <code>scale_colour_manual</code> commands. When you include <code>fill</code> in <code>aes</code>, customize the colour using <code>scale_fill_manual</code>, and if you include <code>colour</code> in <code>aes</code>, customize using <code>scale_colour_manual</code>. You can change colours by keying in the actual names of different colours after the <code>value</code> command. The order of colours matches the order of levels in the factor.[This is a link of the myriad colours and their names available in ggplot] (<a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour" class="uri">http://sape.inf.usi.ch/quick-reference/ggplot2/colour</a>)</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> df.plot) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb198-2" title="2"><span class="kw">geom_bar</span> (<span class="kw">aes</span>(<span class="dt">y =</span> Mean, <span class="dt">x =</span> group, <span class="dt">fill =</span> time), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">position=</span><span class="kw">position_dodge</span>()) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-3" title="3"><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>Mean <span class="op">-</span>Sd, <span class="dt">ymax=</span>Mean <span class="op">+</span>Sd, <span class="dt">x =</span> group, <span class="dt">colour =</span> time), </a>
+<a class="sourceLine" id="cb198-4" title="4">              <span class="dt">width=</span>.<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb198-5" title="5">               <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="fl">0.9</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-6" title="6"><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-7" title="7"><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-8" title="8"><span class="kw">ylab</span> (<span class="st">&quot;Knee torque&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-9" title="9"><span class="kw">xlab</span> (<span class="st">&quot;Group&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:customcol"></span>
+<img src="07-visualization_files/figure-html/customcol-1.png" alt="Knee torque by group with error bars as 1SD" width="672" />
+<p class="caption">
+Figure 8.13: Knee torque by group with error bars as 1SD
+</p>
+</div>
+</div>
+<div id="histogram" class="section level2">
+<h2><span class="header-section-number">8.12</span> Histogram</h2>
+<p>Useful for outlier detection, different spread of data a covariate</p>
+<p>Knee torque by group and time</p>
+<p>The <code>geom_histogram</code> function must decide how many cells (bins) to create for
+binning the data. In this example, the default algorithm chose 30
+bins. If we wanted fewer bins, we would include the <code>bins</code> parameter to tell <code>geom_histogram</code> how many bins we want:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> strn) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-2" title="2"><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ktorq, <span class="dt">fill =</span> group), <span class="dt">binwidth =</span> <span class="dv">10</span>) <span class="op">+</span><span class="st"> </span><span class="co"># try binwidth of 0.1, 1, 10, 100</span></a>
+<a class="sourceLine" id="cb199-3" title="3"><span class="kw">facet_wrap</span>(  <span class="op">~</span><span class="st"> </span>time, <span class="dt">scales =</span> <span class="st">&quot;fixed&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-4" title="4"><span class="kw">ylab</span> (<span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb199-5" title="5"><span class="kw">xlab</span> (<span class="st">&quot;knee torque&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:kneehist"></span>
+<img src="07-visualization_files/figure-html/kneehist-1.png" alt="Histogram of knee torque" width="672" />
+<p class="caption">
+Figure 8.14: Histogram of knee torque
+</p>
+</div>
+</div>
+<div id="creating-a-boxplot" class="section level2">
+<h2><span class="header-section-number">8.13</span> Creating a Boxplot</h2>
+<p>You want to create a boxplot of your data.</p>
+<p>Use <code>geom_boxplot</code> from <code>ggplot</code> to add a boxplot geom to a <code>ggplot</code> graphic. Using the <code>strn</code> data frame from the prior recipe, we can create a boxplot of the values in the <code>y</code> column. The resulting graph is shown in Figure <a href="data-visualisation.html#fig:boxplot">8.15</a>.Provides interquartile range (25th, 75th percentile), median, outliers. Useful for detecing outliers, and spread of data per covariate.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> strn) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ktorq, <span class="dt">x =</span> group, <span class="dt">fill =</span> time)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-4" title="4"><span class="st">  </span><span class="kw">ylab</span> (<span class="st">&quot;Knee torque&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb200-5" title="5"><span class="st">  </span><span class="kw">xlab</span> (<span class="st">&quot;Group&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:boxplot"></span>
+<img src="07-visualization_files/figure-html/boxplot-1.png" alt="Boxplot of knee torque by group and time" width="672" />
+<p class="caption">
+Figure 8.15: Boxplot of knee torque by group and time
+</p>
+</div>
+<p>A boxplot provides a quick and easy visual summary of a dataset.</p>
+<ul>
+<li><p>The thick line in the middle is the median.</p></li>
+<li><p>The box surrounding the median identifies the first and third
+quartiles; the bottom of the box is Q1, and the top is Q3.</p></li>
+<li><p>The “whiskers” above and below the box show the range of the data,
+excluding outliers.</p></li>
+<li><p>The circles identify outliers. By default, an outlier is defined as
+any value that is farther than 1.5×IQR away from the box. (IQR is
+the <em>interquartile range</em>, or Q3–Q1.) In this example, there are
+a few outliers on the high side.</p></li>
+</ul>
+</div>
+<div id="recipe-id188" class="section level2">
+<h2><span class="header-section-number">8.14</span> Writing Your Plot to a File</h2>
+<p>You want to save your graphics in a file, such as a PNG, JPEG, or
+PostScript file.</p>
+<p>With <code>ggplot</code> figures we can use <code>ggsave</code> to save a displayed image to a file. <code>ggsave</code> will make some default assumptions about size and file type for you, allowing you to specify only a filename:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1">fig &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> strn) <span class="op">+</span></a>
+<a class="sourceLine" id="cb201-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ktorq, <span class="dt">x =</span> group, <span class="dt">fill =</span> time)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb201-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;red&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb201-4" title="4"><span class="st">  </span><span class="kw">ylab</span> (<span class="st">&quot;Knee torque&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb201-5" title="5"><span class="st">  </span><span class="kw">xlab</span> (<span class="st">&quot;Group&quot;</span>)</a>
+<a class="sourceLine" id="cb201-6" title="6"></a>
+<a class="sourceLine" id="cb201-7" title="7"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;export/fig.jpg&quot;</span>, <span class="co"># folder/filename</span></a>
+<a class="sourceLine" id="cb201-8" title="8">       <span class="dt">plot =</span> fig, <span class="co"># the figure you want to export</span></a>
+<a class="sourceLine" id="cb201-9" title="9">       <span class="dt">units =</span> <span class="st">&quot;in&quot;</span>, </a>
+<a class="sourceLine" id="cb201-10" title="10">       <span class="dt">width =</span> <span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb201-11" title="11">       <span class="dt">height =</span> <span class="dv">4</span>) </a></code></pre></div>
+<p>The file type is derived from the extension you use in the filename you pass to <code>ggsave</code>. You can control details of size, file type, and scale by passing parameters to <code>ggsave</code>. See <code>?ggsave</code> for specific details.</p>
+<p>In RStudio, a shortcut is to click on <code>Export</code> in the Plots window and then click on “Save as Image,” “Save as PDF,” or “Copy to Clipboard.” The save options will prompt you for a file type
+and a filename before writing the file. The “Copy to Clipboard” option can be handy if you are manually copying and pasting your graphics into a presentation or word processor.</p>
+<p>Remember that the file will be written to your current working directory
+(unless you use an absolute filepath), so be certain you know which
+directory is your working directory before calling <code>savePlot</code>.</p>
+<p>In a noninteractive script using <code>ggplot</code>, you can pass plot objects directly to <code>ggsave</code> so they need not be displayed before saving. In the prior recipe we created a plot object called <code>g1</code>. We can save it to a file like this:</p>
+<p>Note that the units for <code>height</code> and <code>width</code> in <code>ggsave</code> are specified with the <code>units</code> parameter. In this case we used <code>in</code> for inches, but <code>ggsave</code> also supports <code>mm</code> and <code>cm</code> for the more metricly inclined.</p>
+</div>
+<div id="learning-check" class="section level2 unnumbered">
+<h2>Learning check</h2>
+<ol style="list-style-type: decimal">
+<li><p>Open up your <code>practice.Rmd</code>. Run the code chunks you created in sequential order.</p></li>
+<li><p>Generate a cleaveland dotplot of <code>aexttorq</code>.</p></li>
+<li><p>Create a barplot with mean and error bars as standard deviation of <code>kexttorq</code> per <code>group</code> per <code>time</code>, and assign this figure to an object name <code>fig</code>.</p></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="general-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sampling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

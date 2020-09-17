@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Is ankle strength different between two groups at baseline | A Minimal Cookbook for your Basic Statistics Needs in R</title>
+  <meta name="description" content="Chapter 12 Is ankle strength different between two groups at baseline | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Is ankle strength different between two groups at baseline | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Is ankle strength different between two groups at baseline | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  
+  
+  
+
+<meta name="author" content="Bernard Liew" />
+
+
+<meta name="date" content="2020-09-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hypothesis-testing.html"/>
+<link rel="next" href="is-knee-strength-change-over-time-between-two-groups-different.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-cheatsheets"><i class="fa fa-check"></i><b>1.3.1</b> R Cheatsheets</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#getting-r-help-and-inspiration-online"><i class="fa fa-check"></i><b>1.3.2</b> Getting R help and inspiration online</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#other-r-books"><i class="fa fa-check"></i><b>1.3.3</b> Other R books</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="started.html"><a href="started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1" data-path="started.html"><a href="started.html#installing-base-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="started.html"><a href="started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="started.html"><a href="started.html#the-four-rstudio-windows"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="started.html"><a href="started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="started.html"><a href="started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
+<li class="chapter" data-level="2.2.3" data-path="started.html"><a href="started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
+<li class="chapter" data-level="2.2.4" data-path="started.html"><a href="started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="started.html"><a href="started.html#reading-and-writing-code"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="started.html"><a href="started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.3.2" data-path="started.html"><a href="started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
+<li class="chapter" data-level="2.3.3" data-path="started.html"><a href="started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="started.html"><a href="started.html#debugging"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="started.html"><a href="started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="started.html"><a href="started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="started.html"><a href="started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i><b>3.1</b> Download and load libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#the-command-line-console"><i class="fa fa-check"></i><b>3.2</b> The command-line (Console)</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.3</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.3.1</b> Send code from a source to the console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#writing-r-scripts-using-notebooks"><i class="fa fa-check"></i><b>3.4</b> Writing R scripts using notebooks</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.5</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.5.1</b> Commenting code with the # (pound) sign</a></li>
+<li class="chapter" data-level="3.5.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.5.2</b> Spacing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.6</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="basics.html"><a href="basics.html#numbers-versus-characters"><i class="fa fa-check"></i><b>3.6.1</b> Numbers versus characters</a></li>
+<li class="chapter" data-level="3.6.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.6.2</b> Creating new objects with &lt;-</a></li>
+<li class="chapter" data-level="3.6.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.6.3</b> How to name objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#getting-and-setting-the-working-directory"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#creating-a-new-rstudio-project"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#viewing-your-command-history"><i class="fa fa-check"></i><b>4.3</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-packages"><i class="fa fa-check"></i><b>4.4</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.4.1</b> Installing a new package</a></li>
+<li class="chapter" data-level="4.4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.4.2</b> Loading a package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="input-and-output.html"><a href="input-and-output.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="5.1" data-path="input-and-output.html"><a href="input-and-output.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="5.2" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.txt-data"><i class="fa fa-check"></i><b>5.2</b> Reading in “.txt” data</a></li>
+<li class="chapter" data-level="5.3" data-path="input-and-output.html"><a href="input-and-output.html#writing-to-.txt-data"><i class="fa fa-check"></i><b>5.3</b> writing to “.txt” data</a></li>
+<li class="chapter" data-level="5.4" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.xlsx-excel-data"><i class="fa fa-check"></i><b>5.4</b> Reading in “.xlsx” Excel data</a></li>
+<li class="chapter" data-level="5.5" data-path="input-and-output.html"><a href="input-and-output.html#writing-a-data-frame-to-excel"><i class="fa fa-check"></i><b>5.5</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="5.6" data-path="input-and-output.html"><a href="input-and-output.html#saving-and-loading-into-.rdata-files"><i class="fa fa-check"></i><b>5.6</b> Saving and loading into .RData files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="input-and-output.html"><a href="input-and-output.html#saving-a-few-items-in-workspace"><i class="fa fa-check"></i><b>5.6.1</b> Saving a few items in workspace</a></li>
+<li class="chapter" data-level="5.6.2" data-path="input-and-output.html"><a href="input-and-output.html#saving-entire-workspace"><i class="fa fa-check"></i><b>5.6.2</b> Saving entire workspace</a></li>
+<li class="chapter" data-level="5.6.3" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-the-saved-workspace"><i class="fa fa-check"></i><b>5.6.3</b> Reading in the saved workspace</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="input-and-output.html"><a href="input-and-output.html#clearing-the-workspace"><i class="fa fa-check"></i><b>5.7</b> Clearing the workspace</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>I Data manipulation via tidyverse</b></span></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#data-overview"><i class="fa fa-check"></i>Data overview</a></li>
+<li class="chapter" data-level="6.1" data-path="data-manipulation.html"><a href="data-manipulation.html#peeking-at-the-data"><i class="fa fa-check"></i><b>6.1</b> Peeking at the Data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manipulation.html"><a href="data-manipulation.html#checking-the-number-of-rows-and-columns-we-have-in-our-strength-data"><i class="fa fa-check"></i><b>6.2</b> Checking the number of rows and columns we have in our strength data</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manipulation.html"><a href="data-manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.3</b> Tidy data</a></li>
+<li class="chapter" data-level="6.4" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.4</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#gathering"><i class="fa fa-check"></i>Gathering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-manipulation.html"><a href="data-manipulation.html#renaming-variables-and-values"><i class="fa fa-check"></i><b>6.5</b> Renaming variables and values</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variable-names"><i class="fa fa-check"></i>Rename variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-values-in-variable-names"><i class="fa fa-check"></i>Rename values in variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#creating-factors"><i class="fa fa-check"></i>Creating factors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-manipulation.html"><a href="data-manipulation.html#making-a-new-variable"><i class="fa fa-check"></i><b>6.6</b> Making a new variable</a></li>
+<li class="chapter" data-level="6.7" data-path="data-manipulation.html"><a href="data-manipulation.html#transforming-a-variable"><i class="fa fa-check"></i><b>6.7</b> Transforming a variable</a></li>
+<li class="chapter" data-level="6.8" data-path="data-manipulation.html"><a href="data-manipulation.html#filtering"><i class="fa fa-check"></i><b>6.8</b> Filtering</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-based-on-category-you-wish-to-keep"><i class="fa fa-check"></i><b>6.8.1</b> Keep rows based on category you wish to keep</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#include-rows-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.2</b> Include rows based on a numerical range</a></li>
+<li class="chapter" data-level="6.8.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exclude-rows-variables-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.3</b> Exclude rows variables based on a numerical range</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-manipulation.html"><a href="data-manipulation.html#selecting"><i class="fa fa-check"></i><b>6.9</b> Selecting</a></li>
+<li class="chapter" data-level="6.10" data-path="data-manipulation.html"><a href="data-manipulation.html#check-for-missing-na-values"><i class="fa fa-check"></i><b>6.10</b> Check for missing NA values</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="data-manipulation.html"><a href="data-manipulation.html#check-if-there-is-any-missing"><i class="fa fa-check"></i><b>6.10.1</b> Check if there is any missing</a></li>
+<li class="chapter" data-level="6.10.2" data-path="data-manipulation.html"><a href="data-manipulation.html#find-the-number-of-missing-values-per-column"><i class="fa fa-check"></i><b>6.10.2</b> Find the number of missing values per column</a></li>
+<li class="chapter" data-level="6.10.3" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-any-columns"><i class="fa fa-check"></i><b>6.10.3</b> Keep rows with 100% no NA across any columns</a></li>
+<li class="chapter" data-level="6.10.4" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-the-columns-you-want"><i class="fa fa-check"></i><b>6.10.4</b> Keep rows with 100% no NA across the columns you want</a></li>
+<li class="chapter" data-level="6.10.5" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-na-across-columns-you-want."><i class="fa fa-check"></i><b>6.10.5</b> Keep rows <strong>with</strong> NA across columns you want.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>7</b> General statistics</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="7.1" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data"><i class="fa fa-check"></i><b>7.1</b> Summarizing your data</a></li>
+<li class="chapter" data-level="7.2" data-path="general-statistics.html"><a href="general-statistics.html#finding-the-correlation-between-variables"><i class="fa fa-check"></i><b>7.2</b> Finding the correlation between variables</a></li>
+<li class="chapter" data-level="7.3" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data-at-a-group-level"><i class="fa fa-check"></i><b>7.3</b> Summarizing your data at a group level</a></li>
+<li class="chapter" data-level="7.4" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test"><i class="fa fa-check"></i><b>7.4</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="7.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>7.5</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="7.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples-nonparametrically"><i class="fa fa-check"></i><b>7.6</b> Comparing the means of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#the-illustrations"><i class="fa fa-check"></i>The Illustrations</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#notes-on-ggplot2-basics"><i class="fa fa-check"></i>Notes on ggplot2 basics</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#long-versus-wide-data-with-ggplot"><i class="fa fa-check"></i>“Long” Versus “Wide” Data with ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#cleaveland-dotplots"><i class="fa fa-check"></i><b>8.2</b> Cleaveland dotplots</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-a-title-and-labels"><i class="fa fa-check"></i><b>8.3</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-grid"><i class="fa fa-check"></i><b>8.4</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#applying-a-theme-to-a-ggplot-figure"><i class="fa fa-check"></i><b>8.5</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot-of-multiple-groups"><i class="fa fa-check"></i><b>8.6</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-legend"><i class="fa fa-check"></i><b>8.7</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-one-scatter-plot-for-each-group"><i class="fa fa-check"></i><b>8.8</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-bar-chart"><i class="fa fa-check"></i><b>8.9</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-standard-deviation-error-bars-to-a-bar-chart"><i class="fa fa-check"></i><b>8.10</b> Adding standard deviation error bars to a Bar Chart</a></li>
+<li class="chapter" data-level="8.11" data-path="data-visualisation.html"><a href="data-visualisation.html#custom-coloring-a-bar-chart"><i class="fa fa-check"></i><b>8.11</b> Custom coloring a Bar Chart</a></li>
+<li class="chapter" data-level="8.12" data-path="data-visualisation.html"><a href="data-visualisation.html#histogram"><i class="fa fa-check"></i><b>8.12</b> Histogram</a></li>
+<li class="chapter" data-level="8.13" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-boxplot"><i class="fa fa-check"></i><b>8.13</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="8.14" data-path="data-visualisation.html"><a href="data-visualisation.html#recipe-id188"><i class="fa fa-check"></i><b>8.14</b> Writing Your Plot to a File</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Inference via infer</b></span></li>
+<li class="chapter" data-level="9" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>9</b> Sampling</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="9.1" data-path="sampling.html"><a href="sampling.html#sampling-activity"><i class="fa fa-check"></i><b>9.1</b> Sampling bowl activity</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="sampling.html"><a href="sampling.html#what-proportion-of-this-bowls-balls-are-red"><i class="fa fa-check"></i><b>9.1.1</b> What proportion of this bowl’s balls are red?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="sampling.html"><a href="sampling.html#using-the-shovel-once"><i class="fa fa-check"></i><b>9.1.2</b> Using the shovel once</a></li>
+<li class="chapter" data-level="9.1.3" data-path="sampling.html"><a href="sampling.html#student-shovels"><i class="fa fa-check"></i><b>9.1.3</b> Using the shovel 33 times</a></li>
+<li class="chapter" data-level="9.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>9.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="sampling.html"><a href="sampling.html#sampling-simulation"><i class="fa fa-check"></i><b>9.2</b> Virtual sampling</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-once"><i class="fa fa-check"></i><b>9.2.1</b> Using the virtual shovel once</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-33-times"><i class="fa fa-check"></i><b>9.2.2</b> Using the virtual shovel 33 times</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sampling.html"><a href="sampling.html#shovel-1000-times"><i class="fa fa-check"></i><b>9.2.3</b> Using the virtual shovel 1000 times</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sampling.html"><a href="sampling.html#different-shovels"><i class="fa fa-check"></i><b>9.2.4</b> Using different shovels</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="sampling.html"><a href="sampling.html#sampling-framework"><i class="fa fa-check"></i><b>9.3</b> Sampling framework</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sampling.html"><a href="sampling.html#terminology-and-notation"><i class="fa fa-check"></i><b>9.3.1</b> Terminology &amp; notation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sampling.html"><a href="sampling.html#sampling-definitions"><i class="fa fa-check"></i><b>9.3.2</b> Statistical definitions</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sampling.html"><a href="sampling.html#moral-of-the-story"><i class="fa fa-check"></i><b>9.3.3</b> The moral of the story</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="sampling.html"><a href="sampling.html#sampling-case-study"><i class="fa fa-check"></i><b>9.4</b> Case study: Polls</a></li>
+<li class="chapter" data-level="9.5" data-path="sampling.html"><a href="sampling.html#sampling-conclusion"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="sampling.html"><a href="sampling.html#sampling-conclusion-table"><i class="fa fa-check"></i><b>9.5.1</b> Sampling scenarios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>10</b> Bootstrapping &amp; Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="10.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-tactile"><i class="fa fa-check"></i><b>10.1</b> Pennies activity</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-is-the-average-year-on-us-pennies-in-2019"><i class="fa fa-check"></i><b>10.1.1</b> What is the average year on US pennies in 2019?</a></li>
+<li class="chapter" data-level="10.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-once"><i class="fa fa-check"></i><b>10.1.2</b> Resampling once</a></li>
+<li class="chapter" data-level="10.1.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#student-resamples"><i class="fa fa-check"></i><b>10.1.3</b> Resampling 35 times</a></li>
+<li class="chapter" data-level="10.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>10.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-simulation"><i class="fa fa-check"></i><b>10.2</b> Computer simulation of resampling</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#virtually-resampling-once"><i class="fa fa-check"></i><b>10.2.1</b> Virtually resampling once</a></li>
+<li class="chapter" data-level="10.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-35-replicates"><i class="fa fa-check"></i><b>10.2.2</b> Virtually resampling 35 times</a></li>
+<li class="chapter" data-level="10.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-1000-replicates"><i class="fa fa-check"></i><b>10.2.3</b> Virtually resampling 1000 times</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-build-up"><i class="fa fa-check"></i><b>10.3</b> Understanding confidence intervals</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method"><i class="fa fa-check"></i><b>10.3.1</b> Percentile method</a></li>
+<li class="chapter" data-level="10.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#se-method"><i class="fa fa-check"></i><b>10.3.2</b> Standard error method</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-process"><i class="fa fa-check"></i><b>10.4</b> Constructing confidence intervals</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#original-workflow"><i class="fa fa-check"></i><b>10.4.1</b> Original workflow</a></li>
+<li class="chapter" data-level="10.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-workflow"><i class="fa fa-check"></i><b>10.4.2</b> infer package workflow</a></li>
+<li class="chapter" data-level="10.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method-infer"><i class="fa fa-check"></i><b>10.4.3</b> Percentile method with infer</a></li>
+<li class="chapter" data-level="10.4.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-se"><i class="fa fa-check"></i><b>10.4.4</b> Standard error method with infer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-prop-ci"><i class="fa fa-check"></i><b>10.5</b> Interpreting confidence intervals</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ilyas-yohan"><i class="fa fa-check"></i><b>10.5.1</b> Did the net capture the fish?</a></li>
+<li class="chapter" data-level="10.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#shorthand"><i class="fa fa-check"></i><b>10.5.2</b> Precise &amp; shorthand interpretation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-width"><i class="fa fa-check"></i><b>10.5.3</b> Width of confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-conclusion"><i class="fa fa-check"></i><b>10.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-vs-sampling"><i class="fa fa-check"></i><b>10.6.1</b> Comparing bootstrap and sampling distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>11</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="11.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-activity"><i class="fa fa-check"></i><b>11.1</b> Promotions activity</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#does-gender-affect-promotions-at-bank"><i class="fa fa-check"></i><b>11.1.1</b> Does gender affect promotions at bank?</a></li>
+<li class="chapter" data-level="11.1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-once"><i class="fa fa-check"></i><b>11.1.2</b> Shuffling once</a></li>
+<li class="chapter" data-level="11.1.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-16-times"><i class="fa fa-check"></i><b>11.1.3</b> Shuffling 16 times</a></li>
+<li class="chapter" data-level="11.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>11.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#understanding-ht"><i class="fa fa-check"></i><b>11.2</b> Understanding hypothesis tests</a></li>
+<li class="chapter" data-level="11.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-infer"><i class="fa fa-check"></i><b>11.3</b> Conducting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#infer-workflow-ht"><i class="fa fa-check"></i><b>11.3.1</b> infer package workflow</a></li>
+<li class="chapter" data-level="11.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#comparing-infer-workflows"><i class="fa fa-check"></i><b>11.3.2</b> Comparison with confidence intervals</a></li>
+<li class="chapter" data-level="11.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#only-one-test"><i class="fa fa-check"></i><b>11.3.3</b> “There is only one test”</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-interpretation"><i class="fa fa-check"></i><b>11.4</b> Interpreting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#trial"><i class="fa fa-check"></i><b>11.4.1</b> Two possible outcomes</a></li>
+<li class="chapter" data-level="11.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#types-of-errors"><i class="fa fa-check"></i><b>11.4.2</b> Types of errors</a></li>
+<li class="chapter" data-level="11.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#choosing-alpha"><i class="fa fa-check"></i><b>11.4.3</b> How do we choose alpha?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-case-study"><i class="fa fa-check"></i><b>11.5</b> Case study: Are action or romance movies rated higher?</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#imdb-data"><i class="fa fa-check"></i><b>11.5.1</b> IMDb ratings data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sampling-scenario"><i class="fa fa-check"></i><b>11.5.2</b> Sampling scenario</a></li>
+<li class="chapter" data-level="11.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conducting-the-hypothesis-test"><i class="fa fa-check"></i><b>11.5.3</b> Conducting the hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conclusion"><i class="fa fa-check"></i><b>11.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#theory-hypo"><i class="fa fa-check"></i><b>11.6.1</b> Theory-based hypothesis tests</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Worked example</b></span></li>
+<li class="chapter" data-level="12" data-path="is-ankle-strength-different-between-two-groups-at-baseline.html"><a href="is-ankle-strength-different-between-two-groups-at-baseline.html"><i class="fa fa-check"></i><b>12</b> Is ankle strength different between two groups at baseline</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="12.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>12.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="12.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="is-knee-strength-change-over-time-between-two-groups-different.html"><a href="is-knee-strength-change-over-time-between-two-groups-different.html"><i class="fa fa-check"></i><b>13</b> Is knee strength change over time between two groups different</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="13.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>13.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="13.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>13.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="is-ankle-strength-different-between-two-groups-at-baseline" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Is ankle strength different between two groups at baseline</h1>
+<div id="download-and-load-libraries" class="section level2 unnumbered">
+<h2>Download and load libraries</h2>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb417-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb417-3" title="3">               readr, <span class="co"># importing and writing data</span></a>
+<a class="sourceLine" id="cb417-4" title="4">               openxlsx, <span class="co"># writing excel documents</span></a>
+<a class="sourceLine" id="cb417-5" title="5">               purrr, <span class="co"># for piping %&gt;%</span></a>
+<a class="sourceLine" id="cb417-6" title="6">               knitr,</a>
+<a class="sourceLine" id="cb417-7" title="7">               moderndive,</a>
+<a class="sourceLine" id="cb417-8" title="8">               kableExtra,</a>
+<a class="sourceLine" id="cb417-9" title="9">               infer)</a></code></pre></div>
+</div>
+<div id="import-data" class="section level2 unnumbered">
+<h2>Import data</h2>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1">subjdat &lt;-<span class="st">  </span><span class="kw">read_delim</span> (<span class="dt">file =</span> <span class="st">&quot;data/SubjectData.txt&quot;</span>, <span class="co"># file name placed into a folder called data</span></a>
+<a class="sourceLine" id="cb418-2" title="2">                        <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="co"># file separater</span></a>
+<a class="sourceLine" id="cb418-3" title="3">                        <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="co"># the first row of the data is a header row</span></a>
+<a class="sourceLine" id="cb418-4" title="4"></a>
+<a class="sourceLine" id="cb418-5" title="5">scalfac &lt;-<span class="st">  </span><span class="kw">read_delim</span> (<span class="dt">file =</span> <span class="st">&quot;data/ScaleFact.txt&quot;</span>, <span class="co"># file name</span></a>
+<a class="sourceLine" id="cb418-6" title="6">                        <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="co"># file separater</span></a>
+<a class="sourceLine" id="cb418-7" title="7">                        <span class="dt">col_names =</span> <span class="ot">TRUE</span>) <span class="co"># the first row of the data is a header row</span></a>
+<a class="sourceLine" id="cb418-8" title="8"></a>
+<a class="sourceLine" id="cb418-9" title="9">strn &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/STRENGTH.xlsx&quot;</span>)</a></code></pre></div>
+</div>
+<div id="data-manipulation" class="section level2">
+<h2><span class="header-section-number">12.1</span> Data manipulation</h2>
+<ol style="list-style-type: decimal">
+<li>Convert all colnames to lower cases. <strong>Rationale:</strong> Simply to make my life easier.</li>
+</ol>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1"><span class="kw">colnames</span> (strn) &lt;-<span class="st">  </span><span class="kw">tolower</span>(<span class="kw">colnames</span> (strn))</a>
+<a class="sourceLine" id="cb419-2" title="2"><span class="kw">colnames</span> (subjdat) &lt;-<span class="st">  </span><span class="kw">tolower</span>(<span class="kw">colnames</span> (subjdat))</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Check column names for each dataframe. <strong>Rationale:</strong> I want to combined the two dataframes of <code>strn</code> and <code>subjdat</code>, and I need to make sure that the common columns are identically labelled.</li>
+</ol>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="kw">colnames</span> (strn) </a></code></pre></div>
+<pre><code>##  [1] &quot;subj&quot;     &quot;group&quot;    &quot;time&quot;     &quot;side&quot;     &quot;set&quot;      &quot;rep&quot;     
+##  [7] &quot;aexttorq&quot; &quot;aextwork&quot; &quot;aextpow&quot;  &quot;kexttorq&quot; &quot;kextwork&quot; &quot;kextpow&quot;</code></pre>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="kw">colnames</span> (subjdat)</a></code></pre></div>
+<pre><code>##  [1] &quot;subj&quot;              &quot;group&quot;             &quot;age&quot;              
+##  [4] &quot;wt&quot;                &quot;ht&quot;                &quot;bmi&quot;              
+##  [7] &quot;runexp &quot;           &quot;runfreq6wks&quot;       &quot;runfreq12mths&quot;    
+## [10] &quot;rundistwkly6wks&quot;   &quot;rundistwkly12mths&quot; &quot;loadrunexp&quot;       
+## [13] &quot;runload&quot;           &quot;hxload&quot;            &quot;wttrainfreq6wks&quot;  
+## [16] &quot;wttrainfreq12mths&quot; &quot;wttrainstatus&quot;</code></pre>
+<p>When doing statistics, you need to know the end in sight. I need a dataframe which contains the subject identifier, time, group, and ankle strength <code>aexttorq</code> which is normalized to each participant’s body mass.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Keep the columns you want by creating two additional objects: <code>subjdat.sub</code> and <code>strn.sub</code>. Combine the two new objects into a final dataframe <code>new.df</code>.</li>
+</ol>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1"><span class="co"># I need subj, and body mass from the subjdat dataframe</span></a>
+<a class="sourceLine" id="cb424-2" title="2">subjdat.sub &lt;-<span class="st"> </span>subjdat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb424-3" title="3"><span class="st">  </span><span class="kw">select</span> (subj, wt)</a>
+<a class="sourceLine" id="cb424-4" title="4"></a>
+<a class="sourceLine" id="cb424-5" title="5"><span class="co"># I need subj, time, group, side and aexttorq from the strn dataframe</span></a>
+<a class="sourceLine" id="cb424-6" title="6">strn.sub &lt;-<span class="st"> </span>strn <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb424-7" title="7"><span class="st">  </span><span class="kw">select</span> (subj, time, group, side, set, rep, aexttorq)</a>
+<a class="sourceLine" id="cb424-8" title="8"></a>
+<a class="sourceLine" id="cb424-9" title="9">new.df &lt;-<span class="st"> </span>strn.sub <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb424-10" title="10"><span class="st">  </span><span class="kw">inner_join</span>(subjdat.sub, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;subj&quot;</span>))</a>
+<a class="sourceLine" id="cb424-11" title="11"></a>
+<a class="sourceLine" id="cb424-12" title="12"><span class="co"># Have a look at the new dataframe</span></a>
+<a class="sourceLine" id="cb424-13" title="13"><span class="kw">head</span> (new.df)</a></code></pre></div>
+<pre><code>##   subj time group side set rep aexttorq    wt
+## 1    1  PRE     G    R   1   1       70 82.26
+## 2    1  PRE     G    R   1   2       72 82.26
+## 3    1  PRE     G    R   1   3       73 82.26
+## 4    1  PRE     G    R   1   4       73 82.26
+## 5    1  PRE     G    R   2   1       72 82.26
+## 6    1  PRE     G    R   2   2       72 82.26</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Divide <code>aexttorq</code> by <code>wt</code> to get normalized ankle strength</li>
+</ol>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1">new.df &lt;-<span class="st"> </span>new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb426-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">atorq.norm =</span> aexttorq<span class="op">/</span>wt)</a>
+<a class="sourceLine" id="cb426-3" title="3"></a>
+<a class="sourceLine" id="cb426-4" title="4"><span class="kw">head</span> (new.df)</a></code></pre></div>
+<pre><code>##   subj time group side set rep aexttorq    wt atorq.norm
+## 1    1  PRE     G    R   1   1       70 82.26  0.8509604
+## 2    1  PRE     G    R   1   2       72 82.26  0.8752735
+## 3    1  PRE     G    R   1   3       73 82.26  0.8874301
+## 4    1  PRE     G    R   1   4       73 82.26  0.8874301
+## 5    1  PRE     G    R   2   1       72 82.26  0.8752735
+## 6    1  PRE     G    R   2   2       72 82.26  0.8752735</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Keep only strength values at baseline <code>time == "PRE"</code></li>
+</ol>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1">new.df &lt;-<span class="st"> </span>new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb428-2" title="2"><span class="st">  </span><span class="kw">filter</span> (time <span class="op">==</span><span class="st"> &quot;PRE&quot;</span>)</a>
+<a class="sourceLine" id="cb428-3" title="3"></a>
+<a class="sourceLine" id="cb428-4" title="4"><span class="kw">head</span> (new.df)</a></code></pre></div>
+<pre><code>##   subj time group side set rep aexttorq    wt atorq.norm
+## 1    1  PRE     G    R   1   1       70 82.26  0.8509604
+## 2    1  PRE     G    R   1   2       72 82.26  0.8752735
+## 3    1  PRE     G    R   1   3       73 82.26  0.8874301
+## 4    1  PRE     G    R   1   4       73 82.26  0.8874301
+## 5    1  PRE     G    R   2   1       72 82.26  0.8752735
+## 6    1  PRE     G    R   2   2       72 82.26  0.8752735</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Because I am interested in a simple analysis of is group 1 different from group 2, and I measured each person multiple times on each side, I want to create a very simple dataframe where one subject has one strength value. So I need to take the mean strength for each individual</li>
+</ol>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1">new.df &lt;-<span class="st"> </span>new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-2" title="2"><span class="st">  </span><span class="kw">group_by</span> (subj, group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">atorq.norm =</span> <span class="kw">mean</span> (atorq.norm)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb430-4" title="4"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;subj&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1"><span class="kw">head</span> (new.df)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    subj group atorq.norm
+##   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+## 1     1 G          0.831
+## 2     2 G          1.10 
+## 3     3 T          0.686
+## 4     4 G          0.760
+## 5     5 T          0.965
+## 6     6 T          1.17</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Let’s get some summary statistics per group. <strong>Can you guess</strong> if ankle strength is different in group <code>G</code> compared to <code>T</code>?</li>
+</ol>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1"><span class="co"># grouped summaries</span></a>
+<a class="sourceLine" id="cb434-2" title="2">new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb434-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb434-4" title="4"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">Mean =</span> <span class="kw">mean</span> (atorq.norm, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-5" title="5">             <span class="dt">Median =</span> <span class="kw">median</span> (atorq.norm, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-6" title="6">             <span class="dt">Max =</span> <span class="kw">max</span> (atorq.norm, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-7" title="7">             <span class="dt">Min =</span> <span class="kw">min</span> (atorq.norm, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-8" title="8">             <span class="dt">Sd =</span> <span class="kw">sd</span> (atorq.norm, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-9" title="9">             <span class="dt">Iqr =</span> <span class="kw">IQR</span> (atorq.norm, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-10" title="10">             <span class="dt">quant25 =</span> <span class="kw">quantile</span> (atorq.norm, <span class="dt">probs =</span> <span class="fl">0.25</span>, <span class="dt">na.rm =</span> T),</a>
+<a class="sourceLine" id="cb434-11" title="11">             <span class="dt">quant75 =</span> <span class="kw">quantile</span> (atorq.norm, <span class="dt">probs =</span> <span class="fl">0.75</span>, <span class="dt">na.rm =</span> T))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 2 x 9
+##   group  Mean Median   Max   Min    Sd   Iqr quant25 quant75
+##   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 G      1.09   1.13  1.33 0.760 0.194 0.334   0.938    1.27
+## 2 T      1.06   1.15  1.31 0.686 0.202 0.276   0.962    1.24</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Visualize the individual points of the data, so I will create a cleaveland dotplot. Are the values reasonable?</li>
+</ol>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> new.df) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb437-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">nrow</span>(new.df),<span class="dv">1</span>), <span class="dt">x =</span> atorq.norm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb437-3" title="3"><span class="st">  </span><span class="kw">ylab</span> (<span class="st">&quot;row number&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Label as you like</span></a>
+<a class="sourceLine" id="cb437-4" title="4"><span class="st">  </span><span class="kw">xlab</span> (<span class="st">&quot;ankle torque&quot;</span>) <span class="co"># Label as you like</span></a></code></pre></div>
+<p><img src="11-compare2groups_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>Create a bar plot with error bars to see if differences stand out already.</li>
+</ol>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1"><span class="co"># generate a summarized dataframe </span></a>
+<a class="sourceLine" id="cb438-2" title="2">df.plot =<span class="st"> </span>new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb438-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb438-4" title="4"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">Mean =</span> <span class="kw">mean</span> (atorq.norm, <span class="dt">na.rm =</span> T), </a>
+<a class="sourceLine" id="cb438-5" title="5">             <span class="dt">Sd =</span> <span class="kw">sd</span> (atorq.norm, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb438-6" title="6"><span class="st">  </span><span class="kw">ungroup</span>()</a>
+<a class="sourceLine" id="cb438-7" title="7"></a>
+<a class="sourceLine" id="cb438-8" title="8"><span class="co"># Combined plot</span></a>
+<a class="sourceLine" id="cb438-9" title="9"><span class="kw">ggplot</span>(<span class="dt">data =</span> df.plot) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb438-10" title="10"><span class="kw">geom_bar</span> (<span class="kw">aes</span>(<span class="dt">y =</span> Mean, <span class="dt">x =</span> group), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb438-11" title="11"><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin=</span>Mean <span class="op">-</span>Sd, <span class="dt">ymax=</span>Mean <span class="op">+</span>Sd, <span class="dt">x =</span> group), </a>
+<a class="sourceLine" id="cb438-12" title="12">            <span class="dt">width=</span>.<span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb438-13" title="13"><span class="kw">ylab</span> (<span class="st">&quot;Normalized ankle torque&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb438-14" title="14"><span class="kw">xlab</span> (<span class="st">&quot;Group&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-12"></span>
+<img src="11-compare2groups_files/figure-html/unnamed-chunk-12-1.png" alt="ankle torque by group" width="672" />
+<p class="caption">
+Figure 12.1: ankle torque by group
+</p>
+</div>
+</div>
+<div id="hypothesis-testing" class="section level2">
+<h2><span class="header-section-number">12.2</span> Hypothesis testing</h2>
+<ol style="list-style-type: decimal">
+<li>Get the null distribution in a world where two groups have identical mean strength</li>
+</ol>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" title="1">null_distribution &lt;-new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb439-2" title="2"><span class="st">  </span><span class="kw">specify</span> (<span class="dt">formula =</span> atorq.norm <span class="op">~</span><span class="st"> </span>group)<span class="op">%&gt;%</span><span class="st"> </span><span class="co"># outcome ~ independent variable</span></a>
+<a class="sourceLine" id="cb439-3" title="3"><span class="st">  </span><span class="kw">hypothesize</span>(<span class="dt">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># independence means identical </span></a>
+<a class="sourceLine" id="cb439-4" title="4"><span class="st">  </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb439-5" title="5"><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>))</a>
+<a class="sourceLine" id="cb439-6" title="6"></a>
+<a class="sourceLine" id="cb439-7" title="7"><span class="kw">head</span> (null_distribution)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   replicate    stat
+##       &lt;int&gt;   &lt;dbl&gt;
+## 1         1  0.0541
+## 2         2  0.0606
+## 3         3  0.0687
+## 4         4  0.0130
+## 5         5 -0.0262
+## 6         6 -0.0744</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Get the observed difference in strength between two groups. This is just a simple subtraction of the means of the two groups</li>
+</ol>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" title="1">obs_diff &lt;-new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb441-2" title="2"><span class="st">  </span><span class="kw">specify</span> (<span class="dt">formula =</span> atorq.norm <span class="op">~</span><span class="st"> </span>group)<span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb441-3" title="3"><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>))</a>
+<a class="sourceLine" id="cb441-4" title="4"></a>
+<a class="sourceLine" id="cb441-5" title="5">obs_diff</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##     stat
+##    &lt;dbl&gt;
+## 1 0.0259</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>visualize the p-value</li>
+</ol>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">visualize</span>(null_distribution, <span class="dt">binwidth =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<p><img src="11-compare2groups_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1"><span class="kw">visualize</span>(null_distribution, <span class="dt">binwidth =</span> <span class="fl">0.05</span>)<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb444-2" title="2"><span class="st">  </span><span class="kw">shade_p_value</span>(<span class="dt">obs_stat =</span> obs_diff, <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<p><img src="11-compare2groups_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1"><span class="kw">get_p_value</span>(null_distribution, <span class="dt">obs_stat =</span> obs_diff, <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   p_value
+##     &lt;dbl&gt;
+## 1    0.37</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Calculate the mean difference in strength between the two groups and its confidence interval.</li>
+</ol>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb447-1" title="1">bootstrap_distribution &lt;-<span class="st"> </span>new.df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb447-2" title="2"><span class="st">  </span><span class="kw">specify</span> (<span class="dt">formula =</span> atorq.norm <span class="op">~</span><span class="st"> </span>group)<span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb447-3" title="3"><span class="st">  </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;bootstrap&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># change this from permute to bootstreap</span></a>
+<a class="sourceLine" id="cb447-4" title="4"><span class="st">  </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;G&quot;</span>, <span class="st">&quot;T&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1">percentile_ci &lt;-<span class="st"> </span>bootstrap_distribution <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb448-2" title="2"><span class="st">  </span><span class="kw">get_confidence_interval</span>(<span class="dt">level =</span> <span class="fl">0.95</span>, <span class="dt">type =</span> <span class="st">&quot;percentile&quot;</span>)</a>
+<a class="sourceLine" id="cb448-3" title="3">percentile_ci</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   lower_ci upper_ci
+##      &lt;dbl&gt;    &lt;dbl&gt;
+## 1   -0.107    0.167</code></pre>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1"><span class="kw">visualize</span>(bootstrap_distribution) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb450-2" title="2"><span class="st">  </span><span class="kw">shade_confidence_interval</span>(<span class="dt">endpoints =</span> percentile_ci)</a></code></pre></div>
+<p><img src="11-compare2groups_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hypothesis-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="is-knee-strength-change-over-time-between-two-groups-different.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

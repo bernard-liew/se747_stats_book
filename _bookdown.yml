@@ -1,0 +1,19 @@
+book_filename: "cookbook-stats"
+chapter_name: "Chapter "
+output_dir: docs
+rmd_files: [
+    "index.Rmd",
+    "01-gettingstarted.Rmd",
+    "02-basics.Rmd",
+    "03-navigatingworkspace.Rmd",
+    "04-input_output.Rmd",
+    "05-data_manipulation.Rmd",
+    "06-general_statistics.Rmd",
+    "07-visualization.Rmd",
+    "08-sampling.Rmd",
+    "09-confidence-intervals.Rmd",
+    "10-hypothesis-testing.Rmd",
+    "11-compare2groups.Rmd",
+    "12-comparechange2groups.Rmd"]
+clean: [packages.bib, bookdown.bbl]
+new_session: yes

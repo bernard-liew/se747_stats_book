@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A Minimal Cookbook for your Basic Statistics Needs in R</title>
+  <meta name="description" content="A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Minimal Cookbook for your Basic Statistics Needs in R" />
+  
+  
+  
+
+<meta name="author" content="Bernard Liew" />
+
+
+<meta name="date" content="2020-09-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="started.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-cheatsheets"><i class="fa fa-check"></i><b>1.3.1</b> R Cheatsheets</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#getting-r-help-and-inspiration-online"><i class="fa fa-check"></i><b>1.3.2</b> Getting R help and inspiration online</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#other-r-books"><i class="fa fa-check"></i><b>1.3.3</b> Other R books</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="started.html"><a href="started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1" data-path="started.html"><a href="started.html#installing-base-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="started.html"><a href="started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="started.html"><a href="started.html#the-four-rstudio-windows"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="started.html"><a href="started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="started.html"><a href="started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
+<li class="chapter" data-level="2.2.3" data-path="started.html"><a href="started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
+<li class="chapter" data-level="2.2.4" data-path="started.html"><a href="started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="started.html"><a href="started.html#reading-and-writing-code"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="started.html"><a href="started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.3.2" data-path="started.html"><a href="started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
+<li class="chapter" data-level="2.3.3" data-path="started.html"><a href="started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="started.html"><a href="started.html#debugging"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="started.html"><a href="started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="started.html"><a href="started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="started.html"><a href="started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i><b>3.1</b> Download and load libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#the-command-line-console"><i class="fa fa-check"></i><b>3.2</b> The command-line (Console)</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.3</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.3.1</b> Send code from a source to the console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#writing-r-scripts-using-notebooks"><i class="fa fa-check"></i><b>3.4</b> Writing R scripts using notebooks</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.5</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.5.1</b> Commenting code with the # (pound) sign</a></li>
+<li class="chapter" data-level="3.5.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.5.2</b> Spacing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.6</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="basics.html"><a href="basics.html#numbers-versus-characters"><i class="fa fa-check"></i><b>3.6.1</b> Numbers versus characters</a></li>
+<li class="chapter" data-level="3.6.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.6.2</b> Creating new objects with &lt;-</a></li>
+<li class="chapter" data-level="3.6.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.6.3</b> How to name objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#getting-and-setting-the-working-directory"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#creating-a-new-rstudio-project"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#viewing-your-command-history"><i class="fa fa-check"></i><b>4.3</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-packages"><i class="fa fa-check"></i><b>4.4</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.4.1</b> Installing a new package</a></li>
+<li class="chapter" data-level="4.4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.4.2</b> Loading a package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="input-and-output.html"><a href="input-and-output.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="5.1" data-path="input-and-output.html"><a href="input-and-output.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="5.2" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.txt-data"><i class="fa fa-check"></i><b>5.2</b> Reading in “.txt” data</a></li>
+<li class="chapter" data-level="5.3" data-path="input-and-output.html"><a href="input-and-output.html#writing-to-.txt-data"><i class="fa fa-check"></i><b>5.3</b> writing to “.txt” data</a></li>
+<li class="chapter" data-level="5.4" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.xlsx-excel-data"><i class="fa fa-check"></i><b>5.4</b> Reading in “.xlsx” Excel data</a></li>
+<li class="chapter" data-level="5.5" data-path="input-and-output.html"><a href="input-and-output.html#writing-a-data-frame-to-excel"><i class="fa fa-check"></i><b>5.5</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="5.6" data-path="input-and-output.html"><a href="input-and-output.html#saving-and-loading-into-.rdata-files"><i class="fa fa-check"></i><b>5.6</b> Saving and loading into .RData files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="input-and-output.html"><a href="input-and-output.html#saving-a-few-items-in-workspace"><i class="fa fa-check"></i><b>5.6.1</b> Saving a few items in workspace</a></li>
+<li class="chapter" data-level="5.6.2" data-path="input-and-output.html"><a href="input-and-output.html#saving-entire-workspace"><i class="fa fa-check"></i><b>5.6.2</b> Saving entire workspace</a></li>
+<li class="chapter" data-level="5.6.3" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-the-saved-workspace"><i class="fa fa-check"></i><b>5.6.3</b> Reading in the saved workspace</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="input-and-output.html"><a href="input-and-output.html#clearing-the-workspace"><i class="fa fa-check"></i><b>5.7</b> Clearing the workspace</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>I Data manipulation via tidyverse</b></span></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#data-overview"><i class="fa fa-check"></i>Data overview</a></li>
+<li class="chapter" data-level="6.1" data-path="data-manipulation.html"><a href="data-manipulation.html#peeking-at-the-data"><i class="fa fa-check"></i><b>6.1</b> Peeking at the Data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manipulation.html"><a href="data-manipulation.html#checking-the-number-of-rows-and-columns-we-have-in-our-strength-data"><i class="fa fa-check"></i><b>6.2</b> Checking the number of rows and columns we have in our strength data</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manipulation.html"><a href="data-manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.3</b> Tidy data</a></li>
+<li class="chapter" data-level="6.4" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.4</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#gathering"><i class="fa fa-check"></i>Gathering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-manipulation.html"><a href="data-manipulation.html#renaming-variables-and-values"><i class="fa fa-check"></i><b>6.5</b> Renaming variables and values</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variable-names"><i class="fa fa-check"></i>Rename variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-values-in-variable-names"><i class="fa fa-check"></i>Rename values in variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#creating-factors"><i class="fa fa-check"></i>Creating factors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-manipulation.html"><a href="data-manipulation.html#making-a-new-variable"><i class="fa fa-check"></i><b>6.6</b> Making a new variable</a></li>
+<li class="chapter" data-level="6.7" data-path="data-manipulation.html"><a href="data-manipulation.html#transforming-a-variable"><i class="fa fa-check"></i><b>6.7</b> Transforming a variable</a></li>
+<li class="chapter" data-level="6.8" data-path="data-manipulation.html"><a href="data-manipulation.html#filtering"><i class="fa fa-check"></i><b>6.8</b> Filtering</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-based-on-category-you-wish-to-keep"><i class="fa fa-check"></i><b>6.8.1</b> Keep rows based on category you wish to keep</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#include-rows-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.2</b> Include rows based on a numerical range</a></li>
+<li class="chapter" data-level="6.8.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exclude-rows-variables-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.3</b> Exclude rows variables based on a numerical range</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-manipulation.html"><a href="data-manipulation.html#selecting"><i class="fa fa-check"></i><b>6.9</b> Selecting</a></li>
+<li class="chapter" data-level="6.10" data-path="data-manipulation.html"><a href="data-manipulation.html#check-for-missing-na-values"><i class="fa fa-check"></i><b>6.10</b> Check for missing NA values</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="data-manipulation.html"><a href="data-manipulation.html#check-if-there-is-any-missing"><i class="fa fa-check"></i><b>6.10.1</b> Check if there is any missing</a></li>
+<li class="chapter" data-level="6.10.2" data-path="data-manipulation.html"><a href="data-manipulation.html#find-the-number-of-missing-values-per-column"><i class="fa fa-check"></i><b>6.10.2</b> Find the number of missing values per column</a></li>
+<li class="chapter" data-level="6.10.3" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-any-columns"><i class="fa fa-check"></i><b>6.10.3</b> Keep rows with 100% no NA across any columns</a></li>
+<li class="chapter" data-level="6.10.4" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-the-columns-you-want"><i class="fa fa-check"></i><b>6.10.4</b> Keep rows with 100% no NA across the columns you want</a></li>
+<li class="chapter" data-level="6.10.5" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-na-across-columns-you-want."><i class="fa fa-check"></i><b>6.10.5</b> Keep rows <strong>with</strong> NA across columns you want.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>7</b> General statistics</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="7.1" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data"><i class="fa fa-check"></i><b>7.1</b> Summarizing your data</a></li>
+<li class="chapter" data-level="7.2" data-path="general-statistics.html"><a href="general-statistics.html#finding-the-correlation-between-variables"><i class="fa fa-check"></i><b>7.2</b> Finding the correlation between variables</a></li>
+<li class="chapter" data-level="7.3" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data-at-a-group-level"><i class="fa fa-check"></i><b>7.3</b> Summarizing your data at a group level</a></li>
+<li class="chapter" data-level="7.4" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test"><i class="fa fa-check"></i><b>7.4</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="7.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>7.5</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="7.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples-nonparametrically"><i class="fa fa-check"></i><b>7.6</b> Comparing the means of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#the-illustrations"><i class="fa fa-check"></i>The Illustrations</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#notes-on-ggplot2-basics"><i class="fa fa-check"></i>Notes on ggplot2 basics</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#long-versus-wide-data-with-ggplot"><i class="fa fa-check"></i>“Long” Versus “Wide” Data with ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#cleaveland-dotplots"><i class="fa fa-check"></i><b>8.2</b> Cleaveland dotplots</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-a-title-and-labels"><i class="fa fa-check"></i><b>8.3</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-grid"><i class="fa fa-check"></i><b>8.4</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#applying-a-theme-to-a-ggplot-figure"><i class="fa fa-check"></i><b>8.5</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot-of-multiple-groups"><i class="fa fa-check"></i><b>8.6</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-legend"><i class="fa fa-check"></i><b>8.7</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-one-scatter-plot-for-each-group"><i class="fa fa-check"></i><b>8.8</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-bar-chart"><i class="fa fa-check"></i><b>8.9</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-standard-deviation-error-bars-to-a-bar-chart"><i class="fa fa-check"></i><b>8.10</b> Adding standard deviation error bars to a Bar Chart</a></li>
+<li class="chapter" data-level="8.11" data-path="data-visualisation.html"><a href="data-visualisation.html#custom-coloring-a-bar-chart"><i class="fa fa-check"></i><b>8.11</b> Custom coloring a Bar Chart</a></li>
+<li class="chapter" data-level="8.12" data-path="data-visualisation.html"><a href="data-visualisation.html#histogram"><i class="fa fa-check"></i><b>8.12</b> Histogram</a></li>
+<li class="chapter" data-level="8.13" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-boxplot"><i class="fa fa-check"></i><b>8.13</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="8.14" data-path="data-visualisation.html"><a href="data-visualisation.html#recipe-id188"><i class="fa fa-check"></i><b>8.14</b> Writing Your Plot to a File</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Inference via infer</b></span></li>
+<li class="chapter" data-level="9" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>9</b> Sampling</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="9.1" data-path="sampling.html"><a href="sampling.html#sampling-activity"><i class="fa fa-check"></i><b>9.1</b> Sampling bowl activity</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="sampling.html"><a href="sampling.html#what-proportion-of-this-bowls-balls-are-red"><i class="fa fa-check"></i><b>9.1.1</b> What proportion of this bowl’s balls are red?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="sampling.html"><a href="sampling.html#using-the-shovel-once"><i class="fa fa-check"></i><b>9.1.2</b> Using the shovel once</a></li>
+<li class="chapter" data-level="9.1.3" data-path="sampling.html"><a href="sampling.html#student-shovels"><i class="fa fa-check"></i><b>9.1.3</b> Using the shovel 33 times</a></li>
+<li class="chapter" data-level="9.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>9.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="sampling.html"><a href="sampling.html#sampling-simulation"><i class="fa fa-check"></i><b>9.2</b> Virtual sampling</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-once"><i class="fa fa-check"></i><b>9.2.1</b> Using the virtual shovel once</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-33-times"><i class="fa fa-check"></i><b>9.2.2</b> Using the virtual shovel 33 times</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sampling.html"><a href="sampling.html#shovel-1000-times"><i class="fa fa-check"></i><b>9.2.3</b> Using the virtual shovel 1000 times</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sampling.html"><a href="sampling.html#different-shovels"><i class="fa fa-check"></i><b>9.2.4</b> Using different shovels</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="sampling.html"><a href="sampling.html#sampling-framework"><i class="fa fa-check"></i><b>9.3</b> Sampling framework</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sampling.html"><a href="sampling.html#terminology-and-notation"><i class="fa fa-check"></i><b>9.3.1</b> Terminology &amp; notation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sampling.html"><a href="sampling.html#sampling-definitions"><i class="fa fa-check"></i><b>9.3.2</b> Statistical definitions</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sampling.html"><a href="sampling.html#moral-of-the-story"><i class="fa fa-check"></i><b>9.3.3</b> The moral of the story</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="sampling.html"><a href="sampling.html#sampling-case-study"><i class="fa fa-check"></i><b>9.4</b> Case study: Polls</a></li>
+<li class="chapter" data-level="9.5" data-path="sampling.html"><a href="sampling.html#sampling-conclusion"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="sampling.html"><a href="sampling.html#sampling-conclusion-table"><i class="fa fa-check"></i><b>9.5.1</b> Sampling scenarios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>10</b> Bootstrapping &amp; Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="10.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-tactile"><i class="fa fa-check"></i><b>10.1</b> Pennies activity</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-is-the-average-year-on-us-pennies-in-2019"><i class="fa fa-check"></i><b>10.1.1</b> What is the average year on US pennies in 2019?</a></li>
+<li class="chapter" data-level="10.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-once"><i class="fa fa-check"></i><b>10.1.2</b> Resampling once</a></li>
+<li class="chapter" data-level="10.1.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#student-resamples"><i class="fa fa-check"></i><b>10.1.3</b> Resampling 35 times</a></li>
+<li class="chapter" data-level="10.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>10.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-simulation"><i class="fa fa-check"></i><b>10.2</b> Computer simulation of resampling</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#virtually-resampling-once"><i class="fa fa-check"></i><b>10.2.1</b> Virtually resampling once</a></li>
+<li class="chapter" data-level="10.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-35-replicates"><i class="fa fa-check"></i><b>10.2.2</b> Virtually resampling 35 times</a></li>
+<li class="chapter" data-level="10.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-1000-replicates"><i class="fa fa-check"></i><b>10.2.3</b> Virtually resampling 1000 times</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-build-up"><i class="fa fa-check"></i><b>10.3</b> Understanding confidence intervals</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method"><i class="fa fa-check"></i><b>10.3.1</b> Percentile method</a></li>
+<li class="chapter" data-level="10.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#se-method"><i class="fa fa-check"></i><b>10.3.2</b> Standard error method</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-process"><i class="fa fa-check"></i><b>10.4</b> Constructing confidence intervals</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#original-workflow"><i class="fa fa-check"></i><b>10.4.1</b> Original workflow</a></li>
+<li class="chapter" data-level="10.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-workflow"><i class="fa fa-check"></i><b>10.4.2</b> infer package workflow</a></li>
+<li class="chapter" data-level="10.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method-infer"><i class="fa fa-check"></i><b>10.4.3</b> Percentile method with infer</a></li>
+<li class="chapter" data-level="10.4.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-se"><i class="fa fa-check"></i><b>10.4.4</b> Standard error method with infer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-prop-ci"><i class="fa fa-check"></i><b>10.5</b> Interpreting confidence intervals</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ilyas-yohan"><i class="fa fa-check"></i><b>10.5.1</b> Did the net capture the fish?</a></li>
+<li class="chapter" data-level="10.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#shorthand"><i class="fa fa-check"></i><b>10.5.2</b> Precise &amp; shorthand interpretation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-width"><i class="fa fa-check"></i><b>10.5.3</b> Width of confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-conclusion"><i class="fa fa-check"></i><b>10.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-vs-sampling"><i class="fa fa-check"></i><b>10.6.1</b> Comparing bootstrap and sampling distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>11</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="11.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-activity"><i class="fa fa-check"></i><b>11.1</b> Promotions activity</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#does-gender-affect-promotions-at-bank"><i class="fa fa-check"></i><b>11.1.1</b> Does gender affect promotions at bank?</a></li>
+<li class="chapter" data-level="11.1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-once"><i class="fa fa-check"></i><b>11.1.2</b> Shuffling once</a></li>
+<li class="chapter" data-level="11.1.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-16-times"><i class="fa fa-check"></i><b>11.1.3</b> Shuffling 16 times</a></li>
+<li class="chapter" data-level="11.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>11.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#understanding-ht"><i class="fa fa-check"></i><b>11.2</b> Understanding hypothesis tests</a></li>
+<li class="chapter" data-level="11.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-infer"><i class="fa fa-check"></i><b>11.3</b> Conducting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#infer-workflow-ht"><i class="fa fa-check"></i><b>11.3.1</b> infer package workflow</a></li>
+<li class="chapter" data-level="11.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#comparing-infer-workflows"><i class="fa fa-check"></i><b>11.3.2</b> Comparison with confidence intervals</a></li>
+<li class="chapter" data-level="11.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#only-one-test"><i class="fa fa-check"></i><b>11.3.3</b> “There is only one test”</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-interpretation"><i class="fa fa-check"></i><b>11.4</b> Interpreting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#trial"><i class="fa fa-check"></i><b>11.4.1</b> Two possible outcomes</a></li>
+<li class="chapter" data-level="11.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#types-of-errors"><i class="fa fa-check"></i><b>11.4.2</b> Types of errors</a></li>
+<li class="chapter" data-level="11.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#choosing-alpha"><i class="fa fa-check"></i><b>11.4.3</b> How do we choose alpha?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-case-study"><i class="fa fa-check"></i><b>11.5</b> Case study: Are action or romance movies rated higher?</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#imdb-data"><i class="fa fa-check"></i><b>11.5.1</b> IMDb ratings data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sampling-scenario"><i class="fa fa-check"></i><b>11.5.2</b> Sampling scenario</a></li>
+<li class="chapter" data-level="11.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conducting-the-hypothesis-test"><i class="fa fa-check"></i><b>11.5.3</b> Conducting the hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conclusion"><i class="fa fa-check"></i><b>11.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#theory-hypo"><i class="fa fa-check"></i><b>11.6.1</b> Theory-based hypothesis tests</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Worked example</b></span></li>
+<li class="chapter" data-level="12" data-path="is-ankle-strength-different-between-two-groups-at-baseline.html"><a href="is-ankle-strength-different-between-two-groups-at-baseline.html"><i class="fa fa-check"></i><b>12</b> Is ankle strength different between two groups at baseline</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="12.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>12.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="12.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="is-knee-strength-change-over-time-between-two-groups-different.html"><a href="is-knee-strength-change-over-time-between-two-groups-different.html"><i class="fa fa-check"></i><b>13</b> Is knee strength change over time between two groups different</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="13.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>13.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="13.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>13.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">A Minimal Cookbook for your Basic Statistics Needs in R</h1>
+<p class="author"><em>Bernard Liew</em></p>
+<p class="date"><em>2020-09-08</em></p>
+</div>
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Preface</h1>
+<p>The purpose of this book is to help you do stats <strong>EASILY</strong> but not fast at first.</p>
+<p><strong>What this book is</strong></p>
+<p>This books is intended to be a cookbook based approach. It has problems and it has solutions. You will find a similar document “.Rmd” in the supplied folder. Double click it and pressing run will execute everything you see in the PDF.</p>
+<p><strong>What this book is not</strong></p>
+<p>This book does not cover any one topic in extensive detail. If you are interested in conducting analyses or creating plots not covered in the book, I’m sure you’ll find the answer with a quick Google search!</p>
+<div id="why-is-r-so-great" class="section level2">
+<h2><span class="header-section-number">1.1</span> Why is R so great?</h2>
+<ol style="list-style-type: decimal">
+<li><p>R is 100% free and as a result, has a huge support community. Unlike SPSS, Matlab, Excel and JMP, R is, and always will be completely free. This doesn’t just help your wallet - it means that a huge community of R programmers will constantly develop an distribute new R functionality and packages at a speed that leaves all those other packages in the dust! Unlike Fight Club, the first rule of R is “Do talk about R!” The size of the R programming community is staggering. If you ever have a question about how to implement something in R, a quick Poogle search will lead you to your answer virtually every single time.</p></li>
+<li><p>R is the present, and future of statistical programming. To illustrate this, look at the following three figures. These are Google trend searches for three terms: R Programming, Matlab, and SPSS. Try and guess which one is which.</p></li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:googletrend"></span>
+<img src="images/googletrends.png" alt="Google trends for different statistical package" width="460" />
+<p class="caption">
+Figure 1.1: Google trends for different statistical package
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>R is incredibly versatile. You can use R to do everything from calculating simple summary statistics, to performing complex simulations to creating gorgeous plots. If you can imagine an analytical task, you can almost certainly implement it in R.</p></li>
+<li><p>Using RStudio, a program to help you write R code, You can easily and seamlessly combine R code, analyses, plots, and written text into elegant documents all in one place using Sweave (R and Latex) or RMarkdown. In fact, I translated this entire book (the text, formatting, plots, code…yes, everything) in RStudio using Sweave. With RStudio and Sweave, instead of trying to manage two or three programs, say Excel, Word and (sigh) SPSS, where you find yourself spending half your time copying, pasting and formatting data, images and test, you can do everything in one place so nothing gets misread, mistyped, or forgotten.</p></li>
+<li><p>Analyses conducted in R are transparent, easily shareable, and reproducible. If you ask an SPSS user how they conducted a specific analyses, they will either A) Not remember, B) Try (nervously) to construct an analysis procedure on the spot that makes sense - which may or may not correspond to what they actually did months or years ago, or C) Ask you what you are doing in their house. I used to primarily use SPSS, so I speak from experience on this. If you ask an R user (who uses good programming techniques!) how they conducted an analysis, they should always be able to show you the exact code they used. Of course, this doesn’t mean that they used the appropriate analysis or interpreted it correctly, but with all the original code, any problems should be completely transparent!</p></li>
+</ol>
+</div>
+<div id="rrelationship" class="section level2">
+<h2><span class="header-section-number">1.2</span> Why R is like a relationship…</h2>
+<p>Yes, R is very much like a relationship. Like relationships, there are two major truths to R programming:</p>
+<div class="figure" style="text-align: left"><span id="fig:relationship"></span>
+<img src="images/rrelationship.png" alt="R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter." width="315" />
+<p class="caption">
+Figure 1.2: R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li><p>There is nothing more <em>frustrating</em> than when your code does <em>not</em> work</p></li>
+<li><p>There is nothing more <em>satisfying</em> than when your code <em>does</em> work!</p></li>
+</ol>
+<p>Anything worth doing, from losing weight to getting a degree, takes time. Learning R is no different. Especially if this is your first experience programming, you are going to experience a <em>lot</em> of headaches when you get started. You will run into error after error and pound your fists against the table screaming: “WHY ISN’T MY CODE WORKING?!?!? There must be something wrong with this stupid software!!!” You will spend hours trying to find a bug in your code, only to find that - frustratingly enough, you had had an extra space or missed a comma somewhere. You’ll then wonder why you ever decided to learn R when (::sigh::) SPSS was so “nice and easy.”</p>
+<div class="figure" style="text-align: center"><span id="fig:gosling"></span>
+<img src="images/gosling.png" alt="When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous." width="216" />
+<p class="caption">
+Figure 1.3: When you first meet R, it will look so fugly that you’ll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous.
+</p>
+</div>
+<p><strong>Fun Fact!</strong> SPSS stands for “Shitty Piece of Shitty Shit”. True story.</p>
+<p>This is perfectly normal! Don’t get discouraged and DON’T GO BACK TO SPSS! That would be quitting on exercise altogether because you had a tough workout.</p>
+<p>Trust me, as you gain more programming experience, you’ll experience fewer and fewer bugs (though they’ll never go away completely). Once you get over the initial barriers, you’ll find yourself conducting analyses much, much faster than you ever did before.</p>
+</div>
+<div id="r-resources" class="section level2">
+<h2><span class="header-section-number">1.3</span> R resources</h2>
+<div id="r-cheatsheets" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> R Cheatsheets</h3>
+<div class="figure" style="text-align: center"><span id="fig:rreferencecard"></span>
+<img src="images/rreferencess.png" alt="The R reference card written by Tom Short is absolutely indispensable!" width="75%" />
+<p class="caption">
+Figure 1.4: The R reference card written by Tom Short is absolutely indispensable!
+</p>
+</div>
+<p>Over the course of this book, you will be learning <em>lots</em> of new functions. Wouldn’t it be nice if someone created a Cheatsheet / Dictionary of many common R functions? Yes it would, and thankfully several friendly R programmers have done just that. Below is a table of some of them that I recommend. I highly encourage you to print these out and start highlighting functions as you learn them!</p>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="19%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">CheatSheet</th>
+<th align="left">Author</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">R Basics</td>
+<td align="left">Tom Short</td>
+<td align="left"><a href="https://cran.r-project.org/doc/contrib/Short-refcard.pdf">https://cran.r-project.org/doc/contrib/Short-refcard.pdf</a></td>
+</tr>
+<tr class="even">
+<td align="left">Advanced R</td>
+<td align="left">Arianne Colton and Sean Chen</td>
+<td align="left"><a href="https://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf">hhttps://www.rstudio.com/wp-content/uploads/2016/02/advancedR.pdf</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Base R</td>
+<td align="left"><a href="http://mhairihmcneill.com/">Mhairi McNeill</a></td>
+<td align="left"><a href="http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf" class="uri">http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf</a></td>
+</tr>
+<tr class="even">
+<td align="left">Strings</td>
+<td align="left"><a href="https://www.rstudio.com">RStudio</a></td>
+<td align="left"><a href="https://github.com/rstudio/cheatsheets/raw/master/strings.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/strings.pdf</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Data import</td>
+<td align="left"><a href="https://www.rstudio.com">RStudio</a></td>
+<td align="left"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf</a></td>
+</tr>
+<tr class="even">
+<td align="left">Data transformation</td>
+<td align="left"><a href="https://www.rstudio.com">RStudio</a></td>
+<td align="left"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf</a></td>
+</tr>
+<tr class="odd">
+<td align="left">RStudio application</td>
+<td align="left"><a href="https://www.rstudio.com">RStudio</a></td>
+<td align="left"><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf</a></td>
+</tr>
+<tr class="even">
+<td align="left">Plotting with ggplot2</td>
+<td align="left"><a href="https://www.rstudio.com">RStudio</a></td>
+<td align="left"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf</a></td>
+</tr>
+<tr class="odd">
+<td align="left">RMarkdown</td>
+<td align="left"><a href="https://www.rstudio.com">RStudio</a></td>
+<td align="left"><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="getting-r-help-and-inspiration-online" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Getting R help and inspiration online</h3>
+<p>Here are some great resources for R help and inspiration:</p>
+<table>
+<colgroup>
+<col width="44%" />
+<col width="55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Site</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="http://www.google.com">www.google.com</a></td>
+<td align="left">Seriously, Google is any programmer’s best friend. More likely than not you will be directed to <a href="www.stackoverflow.com">www.stackoverflow.com</a> or <a href="www.stackexchange.com">www.stackexchange.com</a></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://www.r-bloggers.com">www.r-bloggers.com</a></td>
+<td align="left">R bloggers is my go-to place to discover the latest and greatest with R.</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://blog.revolutionanalytics.com">blog.revolutionanalytics.com</a></td>
+<td align="left">Revolution analytics always has great R related material.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="other-r-books" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Other R books</h3>
+<p>There are many, many excellent (non-pirate) books on R, some of which are available online for free. Here are some that I highly recommend:</p>
+<table>
+<colgroup>
+<col width="44%" />
+<col width="55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Book</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="http://r4ds.had.co.nz/">R for Data Science by Garrett Grolemund and Hadley Wickham</a></td>
+<td align="left">The best book to learn the latest tools for elegantly doing data science.</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook by Winston Chang</a></td>
+<td align="left">is indispensible for creating graphics.</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="https://rc2e.com/index.html">R Cookbook by James (JD) Long and Paul Teetor</a></td>
+<td align="left">is a useful bag of tips and tricks to get started with R .</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://www.amazon.com/Discovering-Statistics-Using-Andy-Field/dp/1446200469/ref=sr_1_2?ie=UTF8&amp;qid=1487759316&amp;sr=8-2&amp;keywords=statistics+with+r">Discovering Statistics with R by Field, Miles and Field</a></td>
+<td align="left">A classic text focusing on the theory and practice of statistical analysis with R</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="started.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

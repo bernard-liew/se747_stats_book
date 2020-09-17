@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Navigating the Software | A Minimal Cookbook for your Basic Statistics Needs in R</title>
+  <meta name="description" content="Chapter 4 Navigating the Software | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Navigating the Software | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Navigating the Software | A Minimal Cookbook for your Basic Statistics Needs in R" />
+  
+  
+  
+
+<meta name="author" content="Bernard Liew" />
+
+
+<meta name="date" content="2020-09-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basics.html"/>
+<link rel="next" href="input-and-output.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-cheatsheets"><i class="fa fa-check"></i><b>1.3.1</b> R Cheatsheets</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#getting-r-help-and-inspiration-online"><i class="fa fa-check"></i><b>1.3.2</b> Getting R help and inspiration online</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#other-r-books"><i class="fa fa-check"></i><b>1.3.3</b> Other R books</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="started.html"><a href="started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1" data-path="started.html"><a href="started.html#installing-base-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="started.html"><a href="started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="started.html"><a href="started.html#the-four-rstudio-windows"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="started.html"><a href="started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="started.html"><a href="started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
+<li class="chapter" data-level="2.2.3" data-path="started.html"><a href="started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
+<li class="chapter" data-level="2.2.4" data-path="started.html"><a href="started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="started.html"><a href="started.html#reading-and-writing-code"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="started.html"><a href="started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.3.2" data-path="started.html"><a href="started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
+<li class="chapter" data-level="2.3.3" data-path="started.html"><a href="started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="started.html"><a href="started.html#debugging"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="started.html"><a href="started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="started.html"><a href="started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="started.html"><a href="started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i><b>3.1</b> Download and load libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#the-command-line-console"><i class="fa fa-check"></i><b>3.2</b> The command-line (Console)</a></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.3</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.3.1</b> Send code from a source to the console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#writing-r-scripts-using-notebooks"><i class="fa fa-check"></i><b>3.4</b> Writing R scripts using notebooks</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.5</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.5.1</b> Commenting code with the # (pound) sign</a></li>
+<li class="chapter" data-level="3.5.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.5.2</b> Spacing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.6</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="basics.html"><a href="basics.html#numbers-versus-characters"><i class="fa fa-check"></i><b>3.6.1</b> Numbers versus characters</a></li>
+<li class="chapter" data-level="3.6.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.6.2</b> Creating new objects with &lt;-</a></li>
+<li class="chapter" data-level="3.6.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.6.3</b> How to name objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#getting-and-setting-the-working-directory"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#creating-a-new-rstudio-project"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#viewing-your-command-history"><i class="fa fa-check"></i><b>4.3</b> Viewing Your Command History</a></li>
+<li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-packages"><i class="fa fa-check"></i><b>4.4</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.4.1</b> Installing a new package</a></li>
+<li class="chapter" data-level="4.4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.4.2</b> Loading a package</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="input-and-output.html"><a href="input-and-output.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="5.1" data-path="input-and-output.html"><a href="input-and-output.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="5.2" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.txt-data"><i class="fa fa-check"></i><b>5.2</b> Reading in “.txt” data</a></li>
+<li class="chapter" data-level="5.3" data-path="input-and-output.html"><a href="input-and-output.html#writing-to-.txt-data"><i class="fa fa-check"></i><b>5.3</b> writing to “.txt” data</a></li>
+<li class="chapter" data-level="5.4" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-.xlsx-excel-data"><i class="fa fa-check"></i><b>5.4</b> Reading in “.xlsx” Excel data</a></li>
+<li class="chapter" data-level="5.5" data-path="input-and-output.html"><a href="input-and-output.html#writing-a-data-frame-to-excel"><i class="fa fa-check"></i><b>5.5</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="5.6" data-path="input-and-output.html"><a href="input-and-output.html#saving-and-loading-into-.rdata-files"><i class="fa fa-check"></i><b>5.6</b> Saving and loading into .RData files</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="input-and-output.html"><a href="input-and-output.html#saving-a-few-items-in-workspace"><i class="fa fa-check"></i><b>5.6.1</b> Saving a few items in workspace</a></li>
+<li class="chapter" data-level="5.6.2" data-path="input-and-output.html"><a href="input-and-output.html#saving-entire-workspace"><i class="fa fa-check"></i><b>5.6.2</b> Saving entire workspace</a></li>
+<li class="chapter" data-level="5.6.3" data-path="input-and-output.html"><a href="input-and-output.html#reading-in-the-saved-workspace"><i class="fa fa-check"></i><b>5.6.3</b> Reading in the saved workspace</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="input-and-output.html"><a href="input-and-output.html#clearing-the-workspace"><i class="fa fa-check"></i><b>5.7</b> Clearing the workspace</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>I Data manipulation via tidyverse</b></span></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#data-overview"><i class="fa fa-check"></i>Data overview</a></li>
+<li class="chapter" data-level="6.1" data-path="data-manipulation.html"><a href="data-manipulation.html#peeking-at-the-data"><i class="fa fa-check"></i><b>6.1</b> Peeking at the Data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manipulation.html"><a href="data-manipulation.html#checking-the-number-of-rows-and-columns-we-have-in-our-strength-data"><i class="fa fa-check"></i><b>6.2</b> Checking the number of rows and columns we have in our strength data</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manipulation.html"><a href="data-manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.3</b> Tidy data</a></li>
+<li class="chapter" data-level="6.4" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.4</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#spreading"><i class="fa fa-check"></i>Spreading</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#gathering"><i class="fa fa-check"></i>Gathering</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-manipulation.html"><a href="data-manipulation.html#renaming-variables-and-values"><i class="fa fa-check"></i><b>6.5</b> Renaming variables and values</a><ul>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-variable-names"><i class="fa fa-check"></i>Rename variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#rename-values-in-variable-names"><i class="fa fa-check"></i>Rename values in variable names</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#creating-factors"><i class="fa fa-check"></i>Creating factors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="data-manipulation.html"><a href="data-manipulation.html#making-a-new-variable"><i class="fa fa-check"></i><b>6.6</b> Making a new variable</a></li>
+<li class="chapter" data-level="6.7" data-path="data-manipulation.html"><a href="data-manipulation.html#transforming-a-variable"><i class="fa fa-check"></i><b>6.7</b> Transforming a variable</a></li>
+<li class="chapter" data-level="6.8" data-path="data-manipulation.html"><a href="data-manipulation.html#filtering"><i class="fa fa-check"></i><b>6.8</b> Filtering</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-based-on-category-you-wish-to-keep"><i class="fa fa-check"></i><b>6.8.1</b> Keep rows based on category you wish to keep</a></li>
+<li class="chapter" data-level="6.8.2" data-path="data-manipulation.html"><a href="data-manipulation.html#include-rows-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.2</b> Include rows based on a numerical range</a></li>
+<li class="chapter" data-level="6.8.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exclude-rows-variables-based-on-a-numerical-range"><i class="fa fa-check"></i><b>6.8.3</b> Exclude rows variables based on a numerical range</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="data-manipulation.html"><a href="data-manipulation.html#selecting"><i class="fa fa-check"></i><b>6.9</b> Selecting</a></li>
+<li class="chapter" data-level="6.10" data-path="data-manipulation.html"><a href="data-manipulation.html#check-for-missing-na-values"><i class="fa fa-check"></i><b>6.10</b> Check for missing NA values</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="data-manipulation.html"><a href="data-manipulation.html#check-if-there-is-any-missing"><i class="fa fa-check"></i><b>6.10.1</b> Check if there is any missing</a></li>
+<li class="chapter" data-level="6.10.2" data-path="data-manipulation.html"><a href="data-manipulation.html#find-the-number-of-missing-values-per-column"><i class="fa fa-check"></i><b>6.10.2</b> Find the number of missing values per column</a></li>
+<li class="chapter" data-level="6.10.3" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-any-columns"><i class="fa fa-check"></i><b>6.10.3</b> Keep rows with 100% no NA across any columns</a></li>
+<li class="chapter" data-level="6.10.4" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-100-no-na-across-the-columns-you-want"><i class="fa fa-check"></i><b>6.10.4</b> Keep rows with 100% no NA across the columns you want</a></li>
+<li class="chapter" data-level="6.10.5" data-path="data-manipulation.html"><a href="data-manipulation.html#keep-rows-with-na-across-columns-you-want."><i class="fa fa-check"></i><b>6.10.5</b> Keep rows <strong>with</strong> NA across columns you want.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>7</b> General statistics</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="7.1" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data"><i class="fa fa-check"></i><b>7.1</b> Summarizing your data</a></li>
+<li class="chapter" data-level="7.2" data-path="general-statistics.html"><a href="general-statistics.html#finding-the-correlation-between-variables"><i class="fa fa-check"></i><b>7.2</b> Finding the correlation between variables</a></li>
+<li class="chapter" data-level="7.3" data-path="general-statistics.html"><a href="general-statistics.html#summarizing-your-data-at-a-group-level"><i class="fa fa-check"></i><b>7.3</b> Summarizing your data at a group level</a></li>
+<li class="chapter" data-level="7.4" data-path="general-statistics.html"><a href="general-statistics.html#testing-the-mean-of-a-sample-t-test"><i class="fa fa-check"></i><b>7.4</b> Testing the Mean of a Sample (t Test)</a></li>
+<li class="chapter" data-level="7.5" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples"><i class="fa fa-check"></i><b>7.5</b> Comparing the Means of Two Samples</a></li>
+<li class="chapter" data-level="7.6" data-path="general-statistics.html"><a href="general-statistics.html#comparing-the-means-of-two-samples-nonparametrically"><i class="fa fa-check"></i><b>7.6</b> Comparing the means of Two Samples Nonparametrically</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="general-statistics.html"><a href="general-statistics.html#rename-column-names"><i class="fa fa-check"></i>Rename column names</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#intro-Graphics"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#the-illustrations"><i class="fa fa-check"></i>The Illustrations</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#notes-on-ggplot2-basics"><i class="fa fa-check"></i>Notes on ggplot2 basics</a></li>
+<li class="chapter" data-level="" data-path="data-visualisation.html"><a href="data-visualisation.html#long-versus-wide-data-with-ggplot"><i class="fa fa-check"></i>“Long” Versus “Wide” Data with ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Creating a Scatter Plot</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#cleaveland-dotplots"><i class="fa fa-check"></i><b>8.2</b> Cleaveland dotplots</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-a-title-and-labels"><i class="fa fa-check"></i><b>8.3</b> Adding a Title and Labels</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-grid"><i class="fa fa-check"></i><b>8.4</b> Adding (or Removing) a Grid</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#applying-a-theme-to-a-ggplot-figure"><i class="fa fa-check"></i><b>8.5</b> Applying a Theme to a ggplot Figure</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-scatter-plot-of-multiple-groups"><i class="fa fa-check"></i><b>8.6</b> Creating a Scatter Plot of Multiple Groups</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-or-removing-a-legend"><i class="fa fa-check"></i><b>8.7</b> Adding (or Removing) a Legend</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-one-scatter-plot-for-each-group"><i class="fa fa-check"></i><b>8.8</b> Creating One Scatter Plot for Each Group</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-bar-chart"><i class="fa fa-check"></i><b>8.9</b> Creating a Bar Chart</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation.html"><a href="data-visualisation.html#adding-standard-deviation-error-bars-to-a-bar-chart"><i class="fa fa-check"></i><b>8.10</b> Adding standard deviation error bars to a Bar Chart</a></li>
+<li class="chapter" data-level="8.11" data-path="data-visualisation.html"><a href="data-visualisation.html#custom-coloring-a-bar-chart"><i class="fa fa-check"></i><b>8.11</b> Custom coloring a Bar Chart</a></li>
+<li class="chapter" data-level="8.12" data-path="data-visualisation.html"><a href="data-visualisation.html#histogram"><i class="fa fa-check"></i><b>8.12</b> Histogram</a></li>
+<li class="chapter" data-level="8.13" data-path="data-visualisation.html"><a href="data-visualisation.html#creating-a-boxplot"><i class="fa fa-check"></i><b>8.13</b> Creating a Boxplot</a></li>
+<li class="chapter" data-level="8.14" data-path="data-visualisation.html"><a href="data-visualisation.html#recipe-id188"><i class="fa fa-check"></i><b>8.14</b> Writing Your Plot to a File</a></li>
+<li class="chapter" data-level="" data-path="started.html"><a href="started.html#learning-check"><i class="fa fa-check"></i>Learning check</a></li>
+</ul></li>
+<li class="part"><span><b>II Statistical Inference via infer</b></span></li>
+<li class="chapter" data-level="9" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>9</b> Sampling</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="9.1" data-path="sampling.html"><a href="sampling.html#sampling-activity"><i class="fa fa-check"></i><b>9.1</b> Sampling bowl activity</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="sampling.html"><a href="sampling.html#what-proportion-of-this-bowls-balls-are-red"><i class="fa fa-check"></i><b>9.1.1</b> What proportion of this bowl’s balls are red?</a></li>
+<li class="chapter" data-level="9.1.2" data-path="sampling.html"><a href="sampling.html#using-the-shovel-once"><i class="fa fa-check"></i><b>9.1.2</b> Using the shovel once</a></li>
+<li class="chapter" data-level="9.1.3" data-path="sampling.html"><a href="sampling.html#student-shovels"><i class="fa fa-check"></i><b>9.1.3</b> Using the shovel 33 times</a></li>
+<li class="chapter" data-level="9.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>9.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="sampling.html"><a href="sampling.html#sampling-simulation"><i class="fa fa-check"></i><b>9.2</b> Virtual sampling</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-once"><i class="fa fa-check"></i><b>9.2.1</b> Using the virtual shovel once</a></li>
+<li class="chapter" data-level="9.2.2" data-path="sampling.html"><a href="sampling.html#using-the-virtual-shovel-33-times"><i class="fa fa-check"></i><b>9.2.2</b> Using the virtual shovel 33 times</a></li>
+<li class="chapter" data-level="9.2.3" data-path="sampling.html"><a href="sampling.html#shovel-1000-times"><i class="fa fa-check"></i><b>9.2.3</b> Using the virtual shovel 1000 times</a></li>
+<li class="chapter" data-level="9.2.4" data-path="sampling.html"><a href="sampling.html#different-shovels"><i class="fa fa-check"></i><b>9.2.4</b> Using different shovels</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="sampling.html"><a href="sampling.html#sampling-framework"><i class="fa fa-check"></i><b>9.3</b> Sampling framework</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sampling.html"><a href="sampling.html#terminology-and-notation"><i class="fa fa-check"></i><b>9.3.1</b> Terminology &amp; notation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sampling.html"><a href="sampling.html#sampling-definitions"><i class="fa fa-check"></i><b>9.3.2</b> Statistical definitions</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sampling.html"><a href="sampling.html#moral-of-the-story"><i class="fa fa-check"></i><b>9.3.3</b> The moral of the story</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="sampling.html"><a href="sampling.html#sampling-case-study"><i class="fa fa-check"></i><b>9.4</b> Case study: Polls</a></li>
+<li class="chapter" data-level="9.5" data-path="sampling.html"><a href="sampling.html#sampling-conclusion"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="sampling.html"><a href="sampling.html#sampling-conclusion-table"><i class="fa fa-check"></i><b>9.5.1</b> Sampling scenarios</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>10</b> Bootstrapping &amp; Confidence Intervals</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="10.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-tactile"><i class="fa fa-check"></i><b>10.1</b> Pennies activity</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#what-is-the-average-year-on-us-pennies-in-2019"><i class="fa fa-check"></i><b>10.1.1</b> What is the average year on US pennies in 2019?</a></li>
+<li class="chapter" data-level="10.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-once"><i class="fa fa-check"></i><b>10.1.2</b> Resampling once</a></li>
+<li class="chapter" data-level="10.1.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#student-resamples"><i class="fa fa-check"></i><b>10.1.3</b> Resampling 35 times</a></li>
+<li class="chapter" data-level="10.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>10.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#resampling-simulation"><i class="fa fa-check"></i><b>10.2</b> Computer simulation of resampling</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#virtually-resampling-once"><i class="fa fa-check"></i><b>10.2.1</b> Virtually resampling once</a></li>
+<li class="chapter" data-level="10.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-35-replicates"><i class="fa fa-check"></i><b>10.2.2</b> Virtually resampling 35 times</a></li>
+<li class="chapter" data-level="10.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-1000-replicates"><i class="fa fa-check"></i><b>10.2.3</b> Virtually resampling 1000 times</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-build-up"><i class="fa fa-check"></i><b>10.3</b> Understanding confidence intervals</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method"><i class="fa fa-check"></i><b>10.3.1</b> Percentile method</a></li>
+<li class="chapter" data-level="10.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#se-method"><i class="fa fa-check"></i><b>10.3.2</b> Standard error method</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-process"><i class="fa fa-check"></i><b>10.4</b> Constructing confidence intervals</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#original-workflow"><i class="fa fa-check"></i><b>10.4.1</b> Original workflow</a></li>
+<li class="chapter" data-level="10.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-workflow"><i class="fa fa-check"></i><b>10.4.2</b> infer package workflow</a></li>
+<li class="chapter" data-level="10.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#percentile-method-infer"><i class="fa fa-check"></i><b>10.4.3</b> Percentile method with infer</a></li>
+<li class="chapter" data-level="10.4.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#infer-se"><i class="fa fa-check"></i><b>10.4.4</b> Standard error method with infer</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-prop-ci"><i class="fa fa-check"></i><b>10.5</b> Interpreting confidence intervals</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ilyas-yohan"><i class="fa fa-check"></i><b>10.5.1</b> Did the net capture the fish?</a></li>
+<li class="chapter" data-level="10.5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#shorthand"><i class="fa fa-check"></i><b>10.5.2</b> Precise &amp; shorthand interpretation</a></li>
+<li class="chapter" data-level="10.5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-width"><i class="fa fa-check"></i><b>10.5.3</b> Width of confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#ci-conclusion"><i class="fa fa-check"></i><b>10.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#bootstrap-vs-sampling"><i class="fa fa-check"></i><b>10.6.1</b> Comparing bootstrap and sampling distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>11</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="" data-path="sampling.html"><a href="sampling.html#needed-packages"><i class="fa fa-check"></i>Needed packages</a></li>
+<li class="chapter" data-level="11.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-activity"><i class="fa fa-check"></i><b>11.1</b> Promotions activity</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#does-gender-affect-promotions-at-bank"><i class="fa fa-check"></i><b>11.1.1</b> Does gender affect promotions at bank?</a></li>
+<li class="chapter" data-level="11.1.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-once"><i class="fa fa-check"></i><b>11.1.2</b> Shuffling once</a></li>
+<li class="chapter" data-level="11.1.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shuffling-16-times"><i class="fa fa-check"></i><b>11.1.3</b> Shuffling 16 times</a></li>
+<li class="chapter" data-level="11.1.4" data-path="sampling.html"><a href="sampling.html#what-did-we-just-do"><i class="fa fa-check"></i><b>11.1.4</b> What did we just do?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#understanding-ht"><i class="fa fa-check"></i><b>11.2</b> Understanding hypothesis tests</a></li>
+<li class="chapter" data-level="11.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-infer"><i class="fa fa-check"></i><b>11.3</b> Conducting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#infer-workflow-ht"><i class="fa fa-check"></i><b>11.3.1</b> infer package workflow</a></li>
+<li class="chapter" data-level="11.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#comparing-infer-workflows"><i class="fa fa-check"></i><b>11.3.2</b> Comparison with confidence intervals</a></li>
+<li class="chapter" data-level="11.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#only-one-test"><i class="fa fa-check"></i><b>11.3.3</b> “There is only one test”</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-interpretation"><i class="fa fa-check"></i><b>11.4</b> Interpreting hypothesis tests</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#trial"><i class="fa fa-check"></i><b>11.4.1</b> Two possible outcomes</a></li>
+<li class="chapter" data-level="11.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#types-of-errors"><i class="fa fa-check"></i><b>11.4.2</b> Types of errors</a></li>
+<li class="chapter" data-level="11.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#choosing-alpha"><i class="fa fa-check"></i><b>11.4.3</b> How do we choose alpha?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#ht-case-study"><i class="fa fa-check"></i><b>11.5</b> Case study: Are action or romance movies rated higher?</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#imdb-data"><i class="fa fa-check"></i><b>11.5.1</b> IMDb ratings data</a></li>
+<li class="chapter" data-level="11.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sampling-scenario"><i class="fa fa-check"></i><b>11.5.2</b> Sampling scenario</a></li>
+<li class="chapter" data-level="11.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conducting-the-hypothesis-test"><i class="fa fa-check"></i><b>11.5.3</b> Conducting the hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#conclusion"><i class="fa fa-check"></i><b>11.6</b> Conclusion</a><ul>
+<li class="chapter" data-level="11.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#theory-hypo"><i class="fa fa-check"></i><b>11.6.1</b> Theory-based hypothesis tests</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Worked example</b></span></li>
+<li class="chapter" data-level="12" data-path="is-ankle-strength-different-between-two-groups-at-baseline.html"><a href="is-ankle-strength-different-between-two-groups-at-baseline.html"><i class="fa fa-check"></i><b>12</b> Is ankle strength different between two groups at baseline</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="12.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>12.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="12.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>12.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="is-knee-strength-change-over-time-between-two-groups-different.html"><a href="is-knee-strength-change-over-time-between-two-groups-different.html"><i class="fa fa-check"></i><b>13</b> Is knee strength change over time between two groups different</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="data-manipulation.html"><a href="data-manipulation.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="13.1" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation"><i class="fa fa-check"></i><b>13.1</b> Data manipulation</a></li>
+<li class="chapter" data-level="13.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing"><i class="fa fa-check"></i><b>13.2</b> Hypothesis testing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Cookbook for your Basic Statistics Needs in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="NavigatingTheSoftware" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Navigating the Software</h1>
+<div id="introduction" class="section level2 unnumbered">
+<h2>Introduction</h2>
+<p>Both R and RStudio are big chunks of software, first and foremost. You will inevitably
+spend time doing what one does with any big piece of software:
+configuring it, customizing it, updating it, and fitting it into your
+computing environment. This chapter will help you perform those tasks.
+There is nothing here about numerics, statistics, or graphics. This is
+all about dealing with R and RStudio as software.</p>
+</div>
+<div id="download-and-load-libraries" class="section level2 unnumbered">
+<h2>Download and load libraries</h2>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb62-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb62-3" title="3">               readr, <span class="co"># importing and writing data</span></a>
+<a class="sourceLine" id="cb62-4" title="4">               readxl,<span class="co"># read and write excel documents</span></a>
+<a class="sourceLine" id="cb62-5" title="5">               purrr, <span class="co"># for piping %&gt;%</span></a>
+<a class="sourceLine" id="cb62-6" title="6">               corrplot, <span class="co"># for correlation</span></a>
+<a class="sourceLine" id="cb62-7" title="7">               knitr,</a>
+<a class="sourceLine" id="cb62-8" title="8">               yarrr)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:workspace"></span>
+<img src="images/workspace.jpg" alt="Your workspace -- all the objects, functions, and delicious glue you've defined in your current session." width="75%" />
+<p class="caption">
+Figure 4.1: Your workspace – all the objects, functions, and delicious glue you’ve defined in your current session.
+</p>
+</div>
+<p>Remember way back in Chapter 2 when I said everything in R is an object? Well, that’s still true. In this chapter, we’ll cover the basics of R object management. We’ll cover how to load new objects like external datasets into R, how to manage the objects that you already have, and how to export objects from R into external files that you can share with other people or store for your own future use.</p>
+</div>
+<div id="getting-and-setting-the-working-directory" class="section level2">
+<h2><span class="header-section-number">4.1</span> Getting and Setting the Working Directory</h2>
+<p>Your computer is a maze of folders, files. Outside of R, when you want to open a specific file, you probably open up an explorer window that allows you to visually search through the folders on your computer. Or, maybe you select recent files, or type the name of the file in a search box to let your computer do the searching for you. While this system usually works for non-programming tasks, it is a no-go for R. Why? Well, the main problem is that all of these methods require you to <em>visually</em> scan your folders and move your mouse to select folders and files that match what you are looking for. When you are programming in R, you need to specify <em>all</em> steps in your analyses in a way that can be easily replicated by others and your future self. This means you can’t just say: “Find this one file I emailed to myself a week ago” or “Look for a file that looks something like <code>experimentAversion3.txt</code>.” Instead, need to be able to write R code that tells R <em>exactly</em> where to find critical files – either on your computer or on the web.</p>
+<p>To make this job easier, R uses <strong>working directories</strong>.</p>
+<p>You want to change your working directory, or you just want to know what
+it is.</p>
+<dl>
+<dt>RStudio</dt>
+<dd><p>Navigate to a directory in the Files pane. Then from the Files pane, select More → Set As Working Directory, as shown in Figure <a href="NavigatingTheSoftware.html#fig:workingdir">4.2</a>.</p>
+</dd>
+</dl>
+<div class="figure"><span id="fig:workingdir"></span>
+<img src="images/rstudio.files.png" alt="RStudio: Set As Working Directory" width="487" />
+<p class="caption">
+Figure 4.2: RStudio: Set As Working Directory
+</p>
+</div>
+<dl>
+<dt>Console</dt>
+<dd><p>Use <code>getwd</code> to report the working directory, and use <code>setwd</code> to
+change it:</p>
+</dd>
+</dl>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;C:/Users/liew_/Box/myBox/Documents/teaching/SE747_PgResMeth/se747_stats_book&quot;</code></pre>
+<p>Saving the working directory path into an object called <code>currwd</code></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">currwd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># setting it manually with copy + paste</span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="kw">setwd</span>(<span class="st">&quot;C:/Users/bl19622/Box/myBox/Documents/teaching/SE747_PgResMeth/sample_book&quot;</span>)</a>
+<a class="sourceLine" id="cb66-3" title="3"></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="co">#  setting it using the object we created</span></a>
+<a class="sourceLine" id="cb66-5" title="5"><span class="kw">setwd</span> (currwd)</a></code></pre></div>
+<p>Your working directory is important because it is the default location
+for all file input and output—including reading and writing data files,
+opening and saving script files, and saving your workspace image. When
+you open a file and do not specify an absolute path, R will assume that
+the file is in your working directory.</p>
+<p>If you’re using RStudio projects, your default working directory will be the home directory of the project.</p>
+</div>
+<div id="creating-a-new-rstudio-project" class="section level2">
+<h2><span class="header-section-number">4.2</span> Creating a new Rstudio project</h2>
+<p>You want to create a new RStudio project to keep all your files related to a specific project.
+Click File → New Project as in Figure <a href="NavigatingTheSoftware.html#fig:filenew-drop">4.3</a>. ** I ALWAYS use this approach, please use it too**</p>
+<div class="figure"><span id="fig:filenew-drop"></span>
+<img src="images/rstudio.file.newproject.png" alt="Selecting New Project" width="261" />
+<p class="caption">
+Figure 4.3: Selecting New Project
+</p>
+</div>
+<p>This will open the New Project dialog box and allow you to choose which type of project you would like to create, as shown in Figure <a href="NavigatingTheSoftware.html#fig:filenewmenu">4.4</a>.</p>
+<div class="figure"><span id="fig:filenewmenu"></span>
+<img src="images/rstudio.newproject.dialog.png" alt="New Project dialog" width="537" />
+<p class="caption">
+Figure 4.4: New Project dialog
+</p>
+</div>
+<p>Projects are a powerful concept that’s specific to RStudio. They help you by doing the following:</p>
+<ul>
+<li>Setting your working directory to the project directory.</li>
+<li>Preserving window state in RStudio so when you return to a project your windows are all as you left them. This includes opening any files you had open when you last saved your project.</li>
+<li>Preserving RStudio project settings.</li>
+</ul>
+<p>To hold your project settings, RStudio creates a project file with an <em>.Rproj</em> extension in the project directory. If you open the project file in RStudio, it works like a shortcut for opening the project. In addition, RStudio creates a hidden directory named <em>.Rproj.user</em> to house temporary files related to your project.</p>
+<p>Any time you’re working on something nontrivial in R we recommend creating an RStudio project. Projects help you stay organized and make your project workflow easier.</p>
+</div>
+<div id="viewing-your-command-history" class="section level2">
+<h2><span class="header-section-number">4.3</span> Viewing Your Command History</h2>
+<p>You want to see your recent sequence of commands.</p>
+<p>Depending on what you are trying to accomplish, you can use a few different methods to access your prior command history. If you are in the RStudio console pane, you can press the up arrow to interactively scroll through past commands.</p>
+<p>If you want to see a listing of past commands, you can either execute the <code>history</code>
+function or access the History pane in RStudio to view your most recent input:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">history</span>()</a></code></pre></div>
+<p>In RStudio typing <code>history()</code> into the console simply activates the History pane in RStudio (Figure <a href="NavigatingTheSoftware.html#fig:history">4.5</a>). You could also make that pane visible by clicking on it with your cursor.</p>
+<div class="figure"><span id="fig:history"></span>
+<img src="images/history.png" alt="RStudio History pane" width="352" />
+<p class="caption">
+Figure 4.5: RStudio History pane
+</p>
+</div>
+<p>The <code>history</code> function displays your most recent commands. In RStudio the <code>history</code> command will activate the History pane. If you were running R outside of RStudio, <code>history</code> shows the most recent 25 lines, but you can request more like so:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">history</span>(<span class="dv">100</span>)          <span class="co"># Show 100 most recent lines of history</span></a>
+<a class="sourceLine" id="cb68-2" title="2"><span class="kw">history</span>(<span class="ot">Inf</span>)          <span class="co"># Show entire saved history</span></a></code></pre></div>
+<p>From within RStudio, the History tab shows an exhaustive list of past commands in chronological order, with the most recent at the bottom of the list. You can highlight past commands with your cursor, then click on “To Console” or “To Source” to copy past commands into the console or source editor, respectively. This can be terribly handy when you’ve done interactive data analysis and then decide you want to save some past steps to a source file for later use.</p>
+<p>From the console you can see your history by simply pressing the up arrow to scroll backward through your input, which causes your previous typing to reappear, one line at a time.</p>
+<p>If you’ve exited from R or RStudio, you can still see your command history. R
+saves the history in a file called <em>.Rhistory</em> in the working directory. Open the file with a text editor and then scroll to the
+bottom; you will see your most recent typing.</p>
+</div>
+<div id="installing-packages" class="section level2">
+<h2><span class="header-section-number">4.4</span> Installing Packages</h2>
+<p>When you download and install R for the first time, you are installing the Base R software. Base R will contain most of the functions you’ll use on a daily basis like <code>mean()</code> and <code>hist()</code>. However, only functions written by the original authors of the R language will appear here. If you want to access data and code written by other people, you’ll need to install it as a <em>package</em>. An R package is simply a bunch of data, from functions, to help menus, to vignettes (examples), stored in one neat package.</p>
+<div class="figure" style="text-align: center"><span id="fig:package"></span>
+<img src="images/packagebulb.png" alt="An R package is like a lightbulb. First you need to order it with install.packages(). Then, every time you want to use it, you need to turn it on with library()" width="50%" />
+<p class="caption">
+Figure 4.6: An R package is like a lightbulb. First you need to order it with install.packages(). Then, every time you want to use it, you need to turn it on with library()
+</p>
+</div>
+<p>A package is like a light bulb. In order to use it, you first need to order it to your house (i.e.; your computer) by <em>installing</em> it. Once you’ve installed a package, you never need to install it again. However, every time you want to actually use the package, you need to turn it on by <em>loading</em> it. Here’s how to do it.</p>
+<div id="installing-a-new-package" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Installing a new package</h3>
+<p>Installing a package simply means downloading the package code onto your personal computer. There are two main ways to install new packages. The first, and most common, method is to download them from the Comprehensive R Archive Network (CRAN). CRAN is the central repository for R packages. To install a new R package from CRAN, you can simply run the code <code>install.packages("name")</code>, where “name” is the name of the package. For example, to download the <code>yarrr</code> package, which contains several data sets and functions we will use in this book, you should run the following:</p>
+<div class="figure" style="text-align: center"><span id="fig:cran"></span>
+<img src="images/cran.png" alt="CRAN (Comprehensive R Archive Network) is the main source of R packages" width="50%" />
+<p class="caption">
+Figure 4.7: CRAN (Comprehensive R Archive Network) is the main source of R packages
+</p>
+</div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># Install the yarrr package from CRAN</span></a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="co">#   You only need to install a package once!</span></a>
+<a class="sourceLine" id="cb69-3" title="3"><span class="kw">install.packages</span>(<span class="st">&quot;yarrr&quot;</span>)</a></code></pre></div>
+<p>When you run <code>install.packages("name")</code> R will download the package from CRAN. If everything works, you should see some information about where the package is being downloaded from, in addition to a progress bar.</p>
+<div class="figure" style="text-align: center"><span id="fig:installingpackages"></span>
+<img src="images/installingpackages.png" alt="When you install a new package, you'll see some random text like this you the download progress. You don't need to memorize this." width="75%" />
+<p class="caption">
+Figure 4.8: When you install a new package, you’ll see some random text like this you the download progress. You don’t need to memorize this.
+</p>
+</div>
+<p>Like ordering a light bulb, once you’ve installed a package on your computer you never need to install it again (unless you want to try to install a new version of the package). However, every time you want to use it, you need to turn it on by loading it.</p>
+</div>
+<div id="loading-a-package" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Loading a package</h3>
+<p>Once you’ve installed a package, it’s on your computer. However, just because it’s on your computer doesn’t mean R is ready to use it. If you want to use something, like a function or dataset, from a package you <em>always</em> need to <em>load</em> the package in your R session first. Just like a light bulb, you need to turn it on to use it!</p>
+<p>To load a package, you use the <code>library()</code> function. For example, now that we’ve installed the <code>yarrr</code> package, we can load it with <code>library("yarrr")</code>:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># Load the yarrr package so I can use it!</span></a>
+<a class="sourceLine" id="cb70-2" title="2"><span class="co">#   You have to load a package in every new R session!</span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="kw">library</span>(<span class="st">&quot;yarrr&quot;</span>)</a></code></pre></div>
+<p>Now that you’ve loaded the <code>yarrr</code> package, you can use any of its functions! One of the coolest functions in this package is called <code>pirateplot()</code>. Rather than telling you what a pirateplot is, let’s just make one. Run the following code chunk to make your own pirateplot. Don’t worry about the specifics of the code below, you’ll learn more about how all this works later. For now, just run the code and marvel at your pirateplot.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Make a pirateplot using the pirateplot() function</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="co">#  from the yarrr package!</span></a>
+<a class="sourceLine" id="cb71-3" title="3"></a>
+<a class="sourceLine" id="cb71-4" title="4"><span class="kw">pirateplot</span>(<span class="dt">formula =</span> weight <span class="op">~</span><span class="st"> </span>Time, </a>
+<a class="sourceLine" id="cb71-5" title="5">           <span class="dt">data =</span> ChickWeight,</a>
+<a class="sourceLine" id="cb71-6" title="6">           <span class="dt">pal =</span> <span class="st">&quot;xmen&quot;</span>)</a></code></pre></div>
+<p><img src="03-navigatingworkspace_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>There is one way in R to temporarily load a package without using the <code>library()</code> function. To do this, you can simply use the notation <code>package::function</code> notation. This notation simply tells R to load the package just for this one chunk of code. For example, I could use the <code>pirateplot</code> function from <code>yarrr</code> package as follows:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># Use the pirateplot() function without loading the yarrr package first</span></a>
+<a class="sourceLine" id="cb72-2" title="2">yarrr<span class="op">::</span><span class="kw">pirateplot</span>(<span class="dt">formula =</span> weight <span class="op">~</span><span class="st"> </span>Diet,</a>
+<a class="sourceLine" id="cb72-3" title="3">                  <span class="dt">data =</span> ChickWeight)</a></code></pre></div>
+<p><img src="03-navigatingworkspace_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Again, you can think about the <code>package::function</code> method as a way to temporarily loading a package for a single line of code. One benefit of using the <code>package::function</code> notation is that it’s immediately clear to anyone reading the code which package contains the function. However, a drawback is that if you are using a function from a package often, it forces you to constantly retype the package name. You can use whichever method makes sense for you.</p>
+</div>
+</div>
+<div id="learning-check" class="section level2 unnumbered">
+<h2>Learning check</h2>
+<ol style="list-style-type: decimal">
+<li><p>Create a folder called <code>se747</code> on your computer desktop.</p></li>
+<li><p>Create a new project in the folder <code>se747</code>, click File – New Project – New Directory – New Project – Browse, sear for <code>se747</code> folder – under Directory name, type <code>analysis</code>.</p></li>
+<li><p>Create a new R script, click File – New File – R Script.</p></li>
+<li><p>Save the new R script, click File – Save As. Use the file name <code>new_script</code>. It will have the extension <code>.R</code></p></li>
+<li><p>Enter the code below into your new script, and save it.</p></li>
+</ol>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">a &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb73-2" title="2">a <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb73-3" title="3">a</a></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Close RStudio, reopen RStudio. In the Files tab on the bottom right, you should see the script you created <code>new_script.R</code>. Click on it to open and you should see the code you typed.</p></li>
+<li><p>Create a new R notebook, click File – New File – R Notebook.</p></li>
+<li><p>Save the new R notebook, click File – Save As. Use the file name <code>practice</code>. It will have the extension <code>.Rmd</code></p></li>
+<li><p>Clear all the default comments after the headers and before the code chunk. Insert the code chunk below in the notebook and type a few comments before the code to remind you what you executed.</p></li>
+</ol>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb74-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb74-3" title="3">               readr, <span class="co"># importing and writing data</span></a>
+<a class="sourceLine" id="cb74-4" title="4">               openxlsx) <span class="co"># writing excel documents</span></a></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li>Remember to save the notebook.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="input-and-output.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

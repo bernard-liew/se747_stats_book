@@ -1,0 +1,428 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# (PART) Data manipulation via tidyverse {-} 
+
+# Data manipulation
+
+## Download and load libraries {-}
+
+```{r, message=FALSE, warning=FALSE}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               readr, # importing and writing data
+               openxlsx, # writing excel documents
+               purrr, # for piping %>%
+               corrplot, # for correlation
+               knitr,
+               yarrr)
+
+
+
+```
+
+
+
+## Import data {-}
+
+Let's load the 3 files from `data` folder into the workspace again.
+
+```{r message=FALSE, warning=FALSE}
+
+
+subjdat <-  read_delim (file = "data/SubjectData.txt", # file name
+                        delim = "\t", # file separater
+                        col_names = TRUE) # the first row of the data is a header row
+
+scalfac <-  read_delim (file = "data/ScaleFact.txt", # file name
+                        delim = "\t", # file separater
+                        col_names = TRUE) # the first row of the data is a header row
+
+strn <-  read.xlsx (xlsxFile = "data/STRENGTH.xlsx")
+
+```
+
+## Data overview {-}
+
+Design: This is a randomized controlled trial of two groups undergoing two strength training programs. Each subject was tested before and after training for their ankle and knee extensor strength variables.
+
+Number of Subjects:32
+Number of Groups: 2
+Number of sides: 2
+Number of repetitions: variable between 2 to 4
+
+## Peeking at the Data
+
+Let's take a look at the first 6 (by default) rows of data:
+
+```{r header}
+head(subjdat) #look at the top rows
+tail (subjdat) #look at the bottom rows
+
+```
+
+## Checking the number of rows and columns we have in our strength data
+
+I like to do this first, as it is the most basic check - does the number columns and rows conform to the number of variables you entered and the number of observations measured.
+
+```{r dim}
+dimn <- dim(strn)
+
+# Print the number 
+cat ("The number of rows is:",  dimn[1], "\n")
+cat ("The number of cols is:",  dimn[2], "\n")
+```
+
+## Tidy data
+
+You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is **not the data you loaded**, but rather came with the `tidyverse package`. Each dataset shows the same values of four variables *country*, *year*, *population*, and *cases*, but each dataset organises the values in a different way.
+
+```{r}
+table1
+table2
+table3
+
+# Spread across two tables
+table4a  # cases
+table4b  # population
+```
+
+These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with. 
+
+There are three interrelated rules which make a dataset tidy:
+
+1.  Each variable must have its own column.
+1.  Each observation must have its own row.
+1.  Each value must have its own cell.
+
+Figure \@ref(fig:tidy-structure) shows the rules visually.
+
+```{r tidy-structure, echo = FALSE, out.width = "100%", fig.cap = "Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells."}
+knitr::include_graphics("images/tidy-1.png")
+```
+
+These three rules are interrelated because it's impossible to only satisfy two of the three. 
+
+In this example, only `table1` is tidy. It's the only representation where each column is a variable.
+
+Why ensure that your data is tidy? There are two main advantages:
+
+1.  There's a general advantage to picking one consistent way of storing
+    data. If you have a consistent data structure, it's easier to learn the
+    tools that work with it because they have an underlying uniformity.
+    
+1.  There's a specific advantage to placing variables in columns because
+    it allows R's vectorised nature to shine. As you learned in
+    [mutate](#mutate-funs) and [summary functions](#summary-funs), most 
+    built-in R functions work with vectors of values. That makes transforming 
+    tidy data feel particularly natural.
+    
+
+Let's have a look at our data `strn` which is in a tidy format. **the "right" way**
+
+```{r missing.check}
+head(strn) #look at the top rows
+```
+
+## Spreading and gathering
+
+The principles of tidy data seem so obvious that you might wonder if you'll ever encounter a dataset that isn't tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:
+
+1.  Most people aren't familiar with the principles of tidy data, and it's hard
+    to derive them yourself unless you spend a _lot_ of time working with data.
+    
+2.  Data is often organised to facilitate some use other than analysis. For 
+    example, data is often organised to make entry as easy as possible.
+    
+This means for most real analyses, you'll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you'll need to consult with the people who originally generated the data. 
+The second step is to resolve one of two common problems:
+
+1. One variable might be spread across multiple columns.
+
+2. One observation might be scattered across multiple rows.
+
+Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `gather()` and `spread()`.
+
+### Spreading {-}
+
+Let's make it wide. This is how you probably entered your data.
+
+```{r }
+wide <- strn %>% # original data
+  unite ("time_side_set_rep", # give the new variable a name
+         TIME, SIDE, SET, REP, # merged different columns of data into one
+         sep = "_") %>% # choose a separator. I like "_"
+  select (SUBJ, GROUP, time_side_set_rep, AEXTTORQ) %>% # choose columns which I want and discard the rest
+  spread (key = time_side_set_rep, value = AEXTTORQ) # spread it
+
+head (wide)
+```
+
+### Gathering {-}
+
+If your data is wide originally, make sure you have a very consistent labelling system. Then you can convert between formats easily.
+
+
+Let's make it tall again. Converting messy data to tidy data. Why is it important to have a consistent naming terminology? It is a bad idea to use mathematical operators (e.g. "*", "-", "\") when naming, bad idea to have spaces when naming, and long names (e.g."ankle_kinematics_sagittal_plane").
+
+```{r }
+tall  <-  wide %>%
+  gather (-c(1:2), # I want to gather all columns except the first two columns
+          key = time_side_set_rep, # column name which contains the variable names
+          value = AEXTTORQ) %>% # column name containing the values
+  separate (time_side_set_rep, # split a long word in one column
+            into = c("TIME", "SIDE", "SET", "REP"), sep = "_") # give it column names
+
+head (tall)# see how I recreate the original data?
+```
+
+## Renaming variables and values
+
+### Rename variable names {-}
+
+I dislike excessively using capitals. It is alot of effort.
+
+```{r }
+
+# Upper to lower caps
+colnames (strn) <-  tolower(colnames (strn)) # captials to lower caps
+
+# Manually create new names
+strn <- strn %>%
+  rename (atorq = aexttorq, # new name = old name
+          awork = aextwork,
+          apow = aextpow,
+          ktorq = kexttorq,
+          kwork = kextwork,
+          kpow = kextpow)
+
+head (strn)
+
+```
+
+### Rename values in variable names {-}
+
+Let's us rename the values within the variable called GROUP. Instead of G, call it general; instead of T, call it target
+
+```{r }
+
+strn <- strn %>%
+  mutate (group = recode (group, # the variable name
+                          "G" = "general", # old label = new label
+                          "T" = "target")) # old label = new label
+
+head (strn)
+```
+
+
+### Creating factors {-}
+
+Since R can handle factor variables (see `?factor`), we can recode the levels to be more intuitive. Why do you need to convert categorical variables to factors? For now, let's accept it, for every statistical thing you do with categorical variables must be factors.
+
+Make group, time, side, a factor
+
+```{r}
+strn <-  strn %>%
+  mutate (group = factor (group, levels = c("general", "target")), # levels = c(first, second)
+          time = factor (time, levels = c("PRE", "POST")),
+          side = factor (side, levels = c("L", "R")))
+
+head (strn)
+```
+
+## Making a new variable
+
+I want to:
+
+1. add ankle torque and knee torque to create a new variable called total torque
+2. subtract their torques to create a variable called dtorq
+
+```{r }
+strn <-  strn %>%
+  mutate (ttorq = atorq + ktorq, # this will add a new variable called ttorq
+          dtorq = atorq - ktorq) # this will add a new variable called dtorq
+head (strn)
+```
+
+
+You are only interested in the change scores of each subject's average strength
+
+```{r }
+
+strn_change <-  strn %>% # original data
+  group_by(subj, group, time) %>% # calculate an outcome per group
+  summarize (atorq = mean (atorq)) %>% # in this case you want to calculate average
+  spread (key = time, value = atorq) %>% # spread it
+  mutate (atorq_diff = POST-PRE)  %>% # find the difference
+  ungroup ()
+  
+head (strn)
+```
+
+## Transforming a variable
+
+The subject's mass is stored in another file called `subjdat`. we need to merge two documents making sure each row is joined correctly.
+
+```{r }
+
+# convert names to lower cases
+colnames (subjdat)  <-  tolower (colnames (subjdat))
+
+# create another object, keeping only two variables of 
+subj_mass <-  select (subjdat, # original dataframe
+                      subj, wt) # two variables
+
+# 
+strn_scal <-  subj_mass %>%
+  inner_join(strn, by = "subj") %>% # combine two dataframes, ensuring each rows are combined exactly
+  mutate (ttorq_s = ttorq/wt, # divide total torque by weight
+          dtorq_s = dtorq/wt) # divide difference torque by weight
+
+head (strn_scal)
+
+```
+
+
+## Filtering 
+
+Filtering is removing rows you do not want and keeping rows you want based on some condition(s).
+
+### Keep rows based on category you wish to keep
+
+You are only interested in keeping pre strength variables
+
+```{r }
+
+strn_pre <-  strn %>%
+      filter (time == "PRE")
+
+head (strn_pre)
+```
+
+### Include rows based on a numerical range
+
+Keep ankle torque values less than 100 in magnitude and knee torque more than 150
+
+```{r }
+
+strn_filt <-  strn %>%
+      filter (atorq < 100 & ktorq > 150)
+
+head (strn_filt)
+```
+
+### Exclude rows variables based on a numerical range
+
+Exclude ankle torque values less than 100 
+
+```{r }
+# notice the !. It is equivalent to saying "not". Not less than 100 in this instance
+
+strn_filt <-  strn %>%
+      filter (!atorq < 100) 
+
+head (strn_filt)
+```
+
+## Selecting
+
+Selecting removing columns you do not want and keeping columns you want
+
+You are only interested in keeping columns `subj`, `group` in dataframe `strn` 
+
+```{r }
+
+strn.subset <-  strn %>%
+      select (subj, group)
+
+head (strn.subset)
+```
+
+
+## Check for missing NA values 
+
+### Check if there is any missing
+
+```{r }
+na_count <-  sum (is.na (strn))
+
+cat ("The number of missing values =", na_count)
+```
+
+For the sick of practice, let me create a dataset with NA in each. You do not have to know this. 
+
+```{r }
+strn.miss <- strn
+
+strn.miss[,c(7:14)] <-  map_df(strn.miss [,c(7:14)],
+                               function(x) {x[sample(c(TRUE, NA), 
+                                                     prob = c(0.9, 0.1), 
+                                                     size = length(x),
+                                                     replace = TRUE)]})
+
+strn.miss [100,c(7:14)] = NA
+
+na_count = sum (is.na (strn.miss))
+
+cat ("The number of missing values is now =", na_count)
+
+```
+
+### Find the number of missing values per column
+
+```{r }
+na_count <-  strn.miss %>%
+  select(everything()) %>%  # replace to your needs
+  summarise_all(funs(sum(is.na(.))))
+
+kable (na_count, caption = "Number of missing per col") 
+```
+
+### Keep rows with 100% no NA across any columns
+
+```{r }
+strn_compl <-  strn.miss %>%
+  na.omit ()
+```
+
+### Keep rows with 100% no NA across the columns you want 
+
+```{r }
+col2filt = c("atorq", "ktorq") # add as many variables you want
+
+strn_compl <-  strn.miss %>%
+  filter_at(vars(col2filt), all_vars(complete.cases(.)))
+
+head (strn_compl)
+
+```
+
+### Keep rows **with** NA across columns you want. 
+
+Keeping NA is useful if you want to inspect if the missing-ness is due to data entry errors, etc...
+
+```{r }
+
+col2filt = c("atorq", "ktorq") # add as many variables you want
+
+strn_miss <-  strn.miss %>%
+  filter_at(vars(col2filt), all_vars(!complete.cases(.))) 
+
+head (strn_miss)
+
+```
+
+## Learning check {-}
+
+
+1. Open up your `practice.Rmd`. Run the code chunks you created in sequential order.
+
+2. Create a code chunk and open up the three files above into the R workspace. Subsequently, any task should automatically be associated with creating a new code chunk. If unsure, have more chunks.
+
+3. Make all column header names to lowercases. 
+
+4. Remove `aexttorq` values that are below 75, and assign this new data to an object called `strn.sub`. How many rows are left in the new dataframe.
+
